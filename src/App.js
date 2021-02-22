@@ -1,11 +1,24 @@
+import React from 'react';
 import './App.css';
 
-const App = () => {
+import Title from './components/Title';
+import Banner from './components/Banner';
+ 
+
+
+
+function App() {
   return (
-    <div>
-      
+    <div className="App">
+      <Title />
+      <br />
+      <Banner /> 
+      <br />
+      <hr />
+
     </div>
   );
 }
 
+ 
 export default App;
