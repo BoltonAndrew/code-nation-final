@@ -3,6 +3,7 @@ import './App.css';
 import { Home } from './pages/Home'; 
 import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
 import Profile from './pages/Home/profile/';
+import { Swipe } from './pages/Swipe/';
  
 
 
@@ -18,6 +19,7 @@ function App() {
           <Link to='/Login'>&nbsp;Login&nbsp;</Link>
           <Link to='/Logout'>&nbsp;Logout&nbsp;</Link>
           <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
+          <Link to='/Swipe'>&nbsp;Swipe&nbsp;</Link>
 
         </ul>
       </div>
@@ -29,6 +31,10 @@ function App() {
 
             <Route exact path="/Profile">
               <Profile/>
+            </Route>
+
+            <Route exact path="/Swipe">
+              <Swipe/>
             </Route>
 
             <Route exact path="/Register" />
