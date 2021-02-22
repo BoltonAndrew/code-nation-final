@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import React from 'react';
+import { Home } from './pages/Home'; 
 
 import Title from './components/Title';
 import Banner from './components/Banner';
@@ -15,7 +17,6 @@ function App() {
       <Banner /> 
       <br />
       <hr />
-
     </div>
   );
 }
