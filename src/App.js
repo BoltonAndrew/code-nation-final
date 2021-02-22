@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import React from 'react';
-import { Home } from './pages/Home'; 
+import { Home } from './pages/Home';
+import {Swipe} from './pages/Swipe';
 
 import Title from './components/Title';
 import Banner from './components/Banner';
@@ -12,11 +12,8 @@ import Banner from './components/Banner';
 function App() {
   return (
     <div className="App">
-      <Title />
-      <br />
-      <Banner /> 
-      <br />
-      <hr />
+      <Swipe/>
+      
     </div>
   );
 }
