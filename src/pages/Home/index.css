@@ -1,0 +1,21 @@
+#homepage {
+    display: flex;
+    flex-direction: column;
+}
+
+#navbar {
+    height: 5vh;
+    background-color: aquamarine;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+#mainBody {
+    height: 95vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;;
+}
