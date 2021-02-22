@@ -5,6 +5,7 @@
     border-radius: 15px;
     font-family: 'Ruda', sans-serif;
     height: 50vh;
+    width: 100vw;
 }
 
 .header-h1{
@@ -16,6 +17,7 @@
     margin:auto;
     border-radius: 15px;
     height: 25vh;
+    width: 100vw;
     
 
 }
