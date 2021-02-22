@@ -1,1 +1,21 @@
+.container-banner{
+    background-color: #f1f1f1;
+    text-align: center;
+    border-style: hidden;
+    border-radius: 15px;
+    font-family: 'Ruda', sans-serif;
+    height: 50vh;
+}
 
+.header-h1{
+    color: black;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    border-style: solid;
+    margin:auto;
+    border-radius: 15px;
+    height: 25vh;
+    
+
+}
