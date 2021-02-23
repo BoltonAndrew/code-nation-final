@@ -6,11 +6,11 @@ import { addUser, login } from '../../utils';
 export const Home = ({setUser}) => {
     const [loginBool, setLoginBool] = useState(false);
     const [signUp, setSignUp] = useState(false);
-    const [userName, setUserName] = useState();
-    const [pass, setPass] = useState();
-    const [email, setEmail] = useState();
-    const [fName, setFName] = useState();
-    const [lName, setLName] = useState();
+    const [userName, setUserName] = useState('');
+    const [pass, setPass] = useState('');
+    const [email, setEmail] = useState('');
+    const [fName, setFName] = useState('');
+    const [lName, setLName] = useState('');
 
 
     const handleSubmit = (e) => {
@@ -18,6 +18,8 @@ export const Home = ({setUser}) => {
         if (!userName) {
             const fetchObj = {email: email, password: pass};
             login(fetchObj, setUser);
+            setEmail('');
+            setPass('')
         } else if (userName) {
             const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
             addUser(fetchObj, setUser)
@@ -31,8 +33,8 @@ export const Home = ({setUser}) => {
                 <button onClick={() => setSignUp(true)}>Sign Up</button></>}
                 {loginBool && <>
                     <form onSubmit={handleSubmit}>
-                        <input id='emailInput' type='text' placeholder='Email' onChange={(event) => setEmail(event.target.value)}/>
-                        <input id='passwordInput' type='text' placeholder='Password' onChange={(event) => setPass(event.target.value)}/>
+                        <input id='emailInput' type='text' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/>
+                        <input id='passwordInput' type='text' placeholder='Password' value={pass}onChange={(event) => setPass(event.target.value)}/>
                         <button type='submit'>Login</button>
                     </form>
                 </>}
