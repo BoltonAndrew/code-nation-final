@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Home } from './pages/Home'; 
 import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
@@ -12,7 +12,10 @@ import { Rate } from './pages/Rate';
 
 
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState({});
+  
+
   return (
     <BrowserRouter>
     <div className="App">
@@ -36,7 +39,7 @@ function App() {
 
       <div>
             <Route exact path="/">
-              <Home/>
+              <Home setUser={setUser}/>
             </Route>
 
             <Route exact path="/Profile">

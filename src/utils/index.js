@@ -1,20 +1,19 @@
-export const login = async (user, pass, setUser, setErrorMessage) => {
+export const login = async (userObj, setUser) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            userName: user,
-            password: pass,
+            email: userObj.email,
+            password: userObj.password,
         }),
 
     });
     const data = await response.json();
-    if (data.name) {
-        setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName });
+    console.log(data);
+    if (data.user.userName) {
+        setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName });
         localStorage.setItem('MyToken', data.token);
-    } else {
-        setErrorMessage('Incorrect details');
-    };
+    } 
 };
 
 export const logout = async (setUser) => {
@@ -40,21 +39,22 @@ export const checkToken = async (setUser) => {
     }
 }
 
-export const addUser = async (username, fName, lName, email, password, setUser) => {
+export const addUser = async (userObj, setUser) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            userName: username,
-            firstName: fName,
-            lastName: lName,
-            email: email,
-            password: password,
+            userName: userObj.name,
+            firstName: userObj.fName,
+            lastName: userObj.lName,
+            email: userObj.email,
+            password: userObj.password,
         }),
     });
     const data = await response.json();
-    setUser({ userId: data._id, user: data.userName, fName: data.firstName, lName: data.lastName });
-    localStorage.setItem('MyToken', data.tokens.token);
+    console.log(data);
+    setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName });
+    localStorage.setItem('MyToken', data.token);
 };
 
 export const updateUser = async (username, fName, lName, email, password, setUser) => {
@@ -91,6 +91,7 @@ export const swipeFetch = async (setMovies, user) => {
         const ranNum = Math.floor(Math.random() * 10) + 1;
         const response = await fetch(`${process.env.REACT_APP_MDB_API}/3/discover/movie?${process.env.REACT_APP_MDB_KEY}&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=5000&watch_region=GB&page=${pageNum}`)
         const data = await response.json();
+
         if (!userMovies.includes(data.results[ranNum].id)) {
             movieArr.push(data[ranNum]);
         };
