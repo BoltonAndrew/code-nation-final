@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSwipeable,  } from 'react-swipeable';
 import user from '../../images/user.png';
 import user2 from '../../images/user2.jpg';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 export const Swipe = () => {
     const [movies, setMovies] = useState([user, user2]);
@@ -39,8 +39,8 @@ export const Swipe = () => {
 
     return(
         <div className='swipePage' {...handlers}>
-            {movies.length > 1 && <img id='movieImage' src={movies[0]} alt='movie'  ></img>}
-            {movies.length === 1 && <Link className='linkImage' styles={{ backgroundImage: `url(${movies[0]})` }} to='/navigation'/>}
+            <img id='movieImage' src={movies[0]} alt='movie'  ></img>
+            {movies.length === 0 ? <Redirect to='/navigation'/> : null }
         </div>
     )
 }
