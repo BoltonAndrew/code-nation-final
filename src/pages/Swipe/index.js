@@ -5,7 +5,7 @@ import user2 from '../../images/user2.jpg';
 import { Link, Redirect } from 'react-router-dom';
 
 export const Swipe = () => {
-    const [movies, setMovies] = useState([user, user2]);
+    const [movies, setMovies] = useState([]);
     const [likedMovies, setLikedMovies] = useState([]);
     const [dislikedMovies, setDislikedMovies] = useState([]);
 
@@ -38,9 +38,11 @@ export const Swipe = () => {
     })
 
     return(
-        <div className='swipePage' {...handlers}>
+        <div>
+            {movies.length === 10 && <div className='swipePage' {...handlers}>
             <img id='movieImage' src={movies[0]} alt='movie'  ></img>
             {movies.length === 0 ? <Redirect to='/navigation'/> : null }
+        </div>}
         </div>
     )
 }
