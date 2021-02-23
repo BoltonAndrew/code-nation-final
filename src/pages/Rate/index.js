@@ -12,7 +12,7 @@ export const Rate = () => {
         } else if (e.name === 'dislike') {
             // call POST function that adds movie id to users dislike list //
         } else if (e.name === 'watched') {
-            // call POST functio that adds movie id to users watched list //
+            // call POST function that adds movie id to users watched list //
         }
     }
 
