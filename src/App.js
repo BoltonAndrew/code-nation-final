@@ -4,7 +4,10 @@ import { Home } from './pages/Home';
 import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
 import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
+import Admin from './pages/ProfileAdmin/ProfileAdmin';
+import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
+
  
 
 
@@ -21,7 +24,12 @@ function App() {
           <Link to='/Logout'>&nbsp;Logout&nbsp;</Link>
           <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
           <Link to='/Swipe'>&nbsp;Swipe&nbsp;</Link>
+
+          <Link to='/ProfileAdmin'>&nbsp;ProfileAdmin&nbsp;</Link>
+
+
           <Link to='/Rate'>&nbsp;Rate&nbsp;</Link>
+
 
         </ul>
       </div>
@@ -33,6 +41,10 @@ function App() {
 
             <Route exact path="/Profile">
               <Profile/>
+            </Route>
+
+            <Route exact path="/ProfileAdmin">
+              <ProfileAdmin/>
             </Route>
 
             <Route exact path="/Swipe">
