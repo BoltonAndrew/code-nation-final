@@ -11,7 +11,7 @@ export const login = async (userObj, setUser) => {
     const data = await response.json();
     console.log(data);
     if (data.user.userName) {
-        setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName });
+        setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName, friends: data.user.friends, acceptedMovies: data.user.acceptedMovies, rejectedMovies: data.user.rejectedMovies, watchedMovies: data.user.watchedMovies });
         localStorage.setItem('MyToken', data.token);
     } 
 };
@@ -35,7 +35,7 @@ export const checkToken = async (setUser) => {
         setUser('');
     } else {
         const data = await response.json();
-        setUser({ id: data.id, user: data.userName, fName: data.firstName, lName: data.lastName, friends: data.friends, acceptedMovies: data.acceptedMovies, rejectedMovies: data.rejectedMovies, watchedMovies: data.watchedMovies })
+        setUser({ id: data._id, user: data.userName, fName: data.firstName, lName: data.lastName, friends: data.friends, acceptedMovies: data.acceptedMovies, rejectedMovies: data.rejectedMovies, watchedMovies: data.watchedMovies })
     }
 }
 
@@ -53,25 +53,29 @@ export const addUser = async (userObj, setUser) => {
     });
     const data = await response.json();
     console.log(data);
-    setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName });
+    setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName, friends: data.savedUser.friends, acceptedMovies: data.savedUser.acceptedMovies, rejectedMovies: data.savedUser.rejectedMovies, watchedMovies: data.savedUser.watchedMovies });
     localStorage.setItem('MyToken', data.token);
 };
 
-export const updateUser = async (username, fName, lName, email, password, setUser) => {
+export const updateUser = async (userState, setUser) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json',
-                   'Autorization': `Bearer ${localStorage.getItem('MyToken')}`},
+                   'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
         body: JSON.stringify({
-            userName: username,
-            firstName: fName,
-            lastName: lName,
-            email: email,
-            password: password,
+            userName: userState.user,
+            firstName: userState.fName,
+            lastName: userState.lName,
+            email: userState.email,
+            friends: userState.friends,
+            acceptedMovies: userState.acceptedMovies,
+            rejectedMovies: userState.rejectedMovies,
+            watchedMovies: userState.watchedMovies,
         }),
     });
     const data = await response.json();
-    setUser({ userId: data._id, user: data.userName, fName: data.firstName, lName: data.lastName });
+    console.log(data);
+    setUser({ userId: data.updatedUser._id, user: data.updatedUser.userName, fName: data.updatedUser.firstName, lName: data.updatedUser.lastName , friends: data.updatedUser.friends, acceptedMovies: data.updatedUser.acceptedMovies, rejectedMovies: data.updatedUser.rejectedMovies, watchedMovies: data.updatedUser.watchedMovies});
 };
 
 export const deleteUser = async (setUser) => {
@@ -85,17 +89,24 @@ export const deleteUser = async (setUser) => {
 
 export const swipeFetch = async (setMovies, user) => {
     let movieArr = [];
-    const userMovies = user.acceptedMovies.concat(user.watchedMovies, user.rejectedMovies);
+    let userMovies;
+    if (user.acceptedMovies) {
+        userMovies = user.acceptedMovies.concat(user.watchedMovies, user.rejectedMovies)
+    };
     while (movieArr.length < 10) {
-        const pageNum = Math.floor(Math.random() * 100) + 1
-        const ranNum = Math.floor(Math.random() * 10) + 1;
-        const response = await fetch(`${process.env.REACT_APP_MDB_API}/3/discover/movie?${process.env.REACT_APP_MDB_KEY}&sort_by=popularity.desc&vote_average.gte=8&vote_count.gte=5000&watch_region=GB&page=${pageNum}`)
+        const pageNum = Math.floor(Math.random() * 57) + 1
+        const ranNum = Math.floor(Math.random() * 20);
+        const response = await fetch(`${process.env.REACT_APP_MDB_API}/3/discover/movie?${process.env.REACT_APP_MDB_KEY}&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=100&with_watch_providers=8&watch_region=GB&page=${pageNum}`)
         const data = await response.json();
-
-        if (!userMovies.includes(data.results[ranNum].id)) {
-            movieArr.push(data[ranNum]);
-        };
+        console.log(data.results);
+        if (user.acceptedMovies) {
+            console.log('here somehow')
+            if (!userMovies.includes(data.results[ranNum])) {
+                movieArr.push(data.results[ranNum]);
+            };
+        } else {
+            movieArr.push(data.results[ranNum]);
+        }
     };
     setMovies(movieArr);
 };
-
