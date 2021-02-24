@@ -1,29 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Home } from './pages/Home'; 
-import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
+import { Route, BrowserRouter, Link } from "react-router-dom";
 import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
 import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
+
 import { NavigationPage } from './pages/navigation';
 import  WatchParty from './pages/WatchParty';
+import { checkToken } from './utils';
 
 
- 
+const App = () => {
+  const [user, setUser] = useState({});
 
+  useEffect(() => {
+    checkToken(setUser);
+  }, []);
+  
 
-
-function App() {
   return (
     <BrowserRouter>
     <div className="App">
       <div>
       <ul>
-          <Link to='/ProfileAdmin'>&nbsp;ProfileAdmin&nbsp;</Link>
 
+          <Link to='/profile'>&nbsp;Profile&nbsp;</Link>
+          <Link to='/swipe'>&nbsp;Swipe&nbsp;</Link>
+          <Link to='/profileadmin'>&nbsp;Profile Admin&nbsp;</Link>
+          <Link to='/rate'>&nbsp;Rate&nbsp;</Link>
 
-          <Link to='/Rate'>&nbsp;Rate&nbsp;</Link>
 
 
         </ul>
@@ -31,24 +38,20 @@ function App() {
 
       <div>
             <Route exact path="/">
-              <Home/>
+              <Home user={user} setUser={setUser}/>
             </Route>
-
-            <Route exact path="/Profile">
+            <Route exact path="/profile">
               <Profile/>
             </Route>
-
-            <Route exact path="/ProfileAdmin">
+            <Route exact path="/profileadmin">
               <ProfileAdmin/>
             </Route>
-
-            <Route exact path="/Swipe">
-              <Swipe/>
+            <Route exact path="/swipe">
+              <Swipe user={user} setUser={setUser}/>
             </Route>
-            <Route exact path="/Rate">
-              <Rate/>
+            <Route exact path="/rate">
+              <Rate user={user} setUser={setUser}/>
             </Route>
-
             <Route exact path="/navigation">
               <NavigationPage/>
             </Route>
@@ -60,7 +63,7 @@ function App() {
             <Route exact path="/Register" />
             <Route path='/Login' />
             <Route path='/Logout' />
-            
+
           </div>
 
     </div>
