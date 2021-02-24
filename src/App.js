@@ -6,7 +6,11 @@ import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
 import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
+
+import { NavigationPage } from './pages/navigation';
+import  WatchParty from './pages/WatchParty';
 import { checkToken } from './utils';
+
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -21,10 +25,12 @@ const App = () => {
     <div className="App">
       <div>
       <ul>
+
           <Link to='/profile'>&nbsp;Profile&nbsp;</Link>
           <Link to='/swipe'>&nbsp;Swipe&nbsp;</Link>
           <Link to='/profileadmin'>&nbsp;Profile Admin&nbsp;</Link>
           <Link to='/rate'>&nbsp;Rate&nbsp;</Link>
+
 
 
         </ul>
@@ -46,6 +52,18 @@ const App = () => {
             <Route exact path="/rate">
               <Rate user={user} setUser={setUser}/>
             </Route>
+            <Route exact path="/navigation">
+              <NavigationPage/>
+            </Route>
+
+            <Route exact path="/watchParty">
+              <WatchParty/>
+            </Route>
+
+            <Route exact path="/Register" />
+            <Route path='/Login' />
+            <Route path='/Logout' />
+
           </div>
 
     </div>

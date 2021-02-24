@@ -1,1 +1,15 @@
- 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: centre;
+    min-height: 100vh;
+}
+
+input[type='radio'] {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
