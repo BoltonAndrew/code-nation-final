@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Home } from './pages/Home'; 
-import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
+import { Route, BrowserRouter, Link } from "react-router-dom";
 import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
 import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
@@ -44,7 +44,7 @@ const App = () => {
               <Swipe user={user} setUser={setUser}/>
             </Route>
             <Route exact path="/rate">
-              <Rate/>
+              <Rate user={user} setUser={setUser}/>
             </Route>
           </div>
 
