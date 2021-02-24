@@ -4,9 +4,11 @@ import { Home } from './pages/Home';
 import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
 import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
-import Admin from './pages/ProfileAdmin/ProfileAdmin';
 import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
+import { NavigationPage } from './pages/navigation';
+import  WatchParty from './pages/WatchParty';
+
 
  
 
@@ -18,13 +20,6 @@ function App() {
     <div className="App">
       <div>
       <ul>
-          <Link to='/'>&nbsp;Home&nbsp;</Link>
-          <Link to='/Register'>&nbsp;Register&nbsp;</Link>
-          <Link to='/Login'>&nbsp;Login&nbsp;</Link>
-          <Link to='/Logout'>&nbsp;Logout&nbsp;</Link>
-          <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
-          <Link to='/Swipe'>&nbsp;Swipe&nbsp;</Link>
-
           <Link to='/ProfileAdmin'>&nbsp;ProfileAdmin&nbsp;</Link>
 
 
@@ -54,9 +49,18 @@ function App() {
               <Rate/>
             </Route>
 
+            <Route exact path="/navigation">
+              <NavigationPage/>
+            </Route>
+
+            <Route exact path="/watchParty">
+              <WatchParty/>
+            </Route>
+
             <Route exact path="/Register" />
             <Route path='/Login' />
             <Route path='/Logout' />
+            
           </div>
 
     </div>
