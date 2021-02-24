@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Swipeable, direction } from 'react-deck-swiper';
-import user from '../../images/user.png';
-import user2 from '../../images/user2.jpg';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import cowLogo from '../../images/cowLogo.png';
 import './index.css';
 import { swipeFetch, updateUser } from '../../utils'
@@ -45,11 +43,13 @@ export const Swipe = ({user, setUser}) => {
                 <div className='swipePage'>
                     <img id='movieImage' src={process.env.REACT_APP_MDB_IMG + movies[0].poster_path} alt='movie'/>
                 </div>}
-                <button onClick={() => {
-                    setSkipBool(true);
-                    updateUser(user, setUser);
-                    }
-                }>skip</button>
+            <button onClick={() => {
+                setSkipBool(true);
+                updateUser(user, setUser);
+                }
+            }>
+            skip
+            </button>
                 
         </div>
         </Swipeable>
