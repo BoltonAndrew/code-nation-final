@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Home } from './pages/Home'; 
 import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
 import Profile from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
-import Admin from './pages/ProfileAdmin/ProfileAdmin';
 import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
-
- 
-
-
+import { checkToken } from './utils';
 
 const App = () => {
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    checkToken(setUser);
+  }, []);
   
 
   return (
@@ -21,17 +21,10 @@ const App = () => {
     <div className="App">
       <div>
       <ul>
-          <Link to='/'>&nbsp;Home&nbsp;</Link>
-          <Link to='/Register'>&nbsp;Register&nbsp;</Link>
-          <Link to='/Login'>&nbsp;Login&nbsp;</Link>
-          <Link to='/Logout'>&nbsp;Logout&nbsp;</Link>
-          <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
-          <Link to='/Swipe'>&nbsp;Swipe&nbsp;</Link>
-
-          <Link to='/ProfileAdmin'>&nbsp;ProfileAdmin&nbsp;</Link>
-
-
-          <Link to='/Rate'>&nbsp;Rate&nbsp;</Link>
+          <Link to='/profile'>&nbsp;Profile&nbsp;</Link>
+          <Link to='/swipe'>&nbsp;Swipe&nbsp;</Link>
+          <Link to='/profileadmin'>&nbsp;Profile Admin&nbsp;</Link>
+          <Link to='/rate'>&nbsp;Rate&nbsp;</Link>
 
 
         </ul>
@@ -39,27 +32,20 @@ const App = () => {
 
       <div>
             <Route exact path="/">
-              <Home setUser={setUser}/>
+              <Home user={user} setUser={setUser}/>
             </Route>
-
-            <Route exact path="/Profile">
+            <Route exact path="/profile">
               <Profile/>
             </Route>
-
-            <Route exact path="/ProfileAdmin">
+            <Route exact path="/profileadmin">
               <ProfileAdmin/>
             </Route>
-
-            <Route exact path="/Swipe">
-              <Swipe/>
+            <Route exact path="/swipe">
+              <Swipe user={user} setUser={setUser}/>
             </Route>
-            <Route exact path="/Rate">
+            <Route exact path="/rate">
               <Rate/>
             </Route>
-
-            <Route exact path="/Register" />
-            <Route path='/Login' />
-            <Route path='/Logout' />
           </div>
 
     </div>

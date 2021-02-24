@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './index.css';
 import { addUser, login } from '../../utils';
 
-export const Home = ({setUser}) => {
+export const Home = ({user, setUser}) => {
     const [loginBool, setLoginBool] = useState(false);
     const [signUp, setSignUp] = useState(false);
     const [userName, setUserName] = useState('');
@@ -11,6 +11,8 @@ export const Home = ({setUser}) => {
     const [email, setEmail] = useState('');
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
+    const [newUser, setNewUser] = useState(false);
+    const [returningUser, setReturningUser] = useState(false);
 
 
     const handleSubmit = (e) => {
@@ -22,7 +24,11 @@ export const Home = ({setUser}) => {
             setPass('')
         } else if (userName) {
             const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
-            addUser(fetchObj, setUser)
+            addUser(fetchObj, setUser);
+            setEmail('');
+            setPass('');
+            setFName('');
+            setLName('');
         }
     }
 
@@ -56,6 +62,7 @@ export const Home = ({setUser}) => {
                 Moo-V-Find will help you and your fellow movide watchers find a film that you'll all enjoy instead of spending hours choosing one.
                 </p>
             </div>
+            {user.user && <Redirect to='/swipe'/>}
         </div>
     )
 }
