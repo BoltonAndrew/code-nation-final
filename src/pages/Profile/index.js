@@ -92,6 +92,7 @@ button {
     box-shadow: none;
     border: none;
     padding: 25px;
+
 }
 button:hover {
     background-color: rgba(106, 97, 171, 0.7);

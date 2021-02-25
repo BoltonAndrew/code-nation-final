@@ -1,24 +1,27 @@
 import React from 'react';
-import { Route, BrowserRouter, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import './index.css';
 
 export const NavigationPage = () => {
     return(
     
-    <div className="App">
-      <div>
-      <ul>
-          <Link to='/'>&nbsp;Home&nbsp;</Link>
-          <Link to='/Register'>&nbsp;Register&nbsp;</Link>
-          <Link to='/Login'>&nbsp;Login&nbsp;</Link>
-          <Link to='/Logout'>&nbsp;Logout&nbsp;</Link>
-          <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
-          <Link to='/Swipe'>&nbsp;Swipe&nbsp;</Link>
-          <Link to='/watchParty'>&nbsp;Watch Party&nbsp;</Link>
-
-          </ul>
-      
-     </div>
-     </div>
+    <div className="app">
+        <div id='navContainer'>
+            <div id='topButton'>
+                <Link to='/watchParty'>&nbsp;Watch Party&nbsp;</Link>
+            </div>
+            <div id='LinkContainer'>
+                <div className='doubleLinkContainer'>
+                    <Link to='/swipe'>&nbsp;Swipe&nbsp;</Link>
+                    <Link to='/rate'>&nbsp;Rate&nbsp;</Link>
+                </div>
+                <div className='doubleLinkContainer'>
+                    <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
+                    <Link to='/profileadmin'>&nbsp;Settings&nbsp;</Link>
+                </div>
+            </div>
+        </div>
+    </div>
    
 
  )   

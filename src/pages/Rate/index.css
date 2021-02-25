@@ -1,3 +1,8 @@
 .movieImage {
     width: 100vw;
 }
+
+#placeholder {
+    height: 10vh;
+    width: 100vw;
+}
