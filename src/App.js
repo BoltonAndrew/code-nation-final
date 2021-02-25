@@ -35,7 +35,7 @@ const App = () => {
               <Home user={user} setUser={setUser}/>
             </Route>
             <Route exact path="/profile">
-              <Profile/>
+              <Profile user={user}/>
             </Route>
             <Route exact path="/profileadmin">
               <ProfileAdmin/>
