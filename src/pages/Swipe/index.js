@@ -3,7 +3,8 @@ import { Swipeable, direction } from 'react-deck-swiper';
 import { Redirect } from 'react-router-dom';
 import cowLogo from '../../images/cowLogo.png';
 import './index.css';
-import { swipeFetch, updateUser } from '../../utils'
+import { swipeFetch, updateUser } from '../../utils';
+import { NavigationPage } from '../navigation';
 
 export const Swipe = ({user, setUser}) => {
     const [movies, setMovies] = useState([]);
@@ -35,24 +36,27 @@ export const Swipe = ({user, setUser}) => {
         }
     }
     return(
-        <Swipeable onSwipe={handleOnSwipe}>
-            {skipBool && <Redirect to='/navigation'/>}
         <div>
-            {movies.length < 1 && <img id='cowLogo' src={cowLogo} alt='loading'/>}
-            {movies.length >= 1 && 
-                <div className='swipePage'>
-                    <img id='movieImage' src={process.env.REACT_APP_MDB_IMG + movies[0].poster_path} alt='movie'/>
-                </div>}
-            <button onClick={() => {
-                setSkipBool(true);
-                updateUser(user, setUser);
-                }
-            }>
-            skip
-            </button>
-                
+            <Swipeable onSwipe={handleOnSwipe}>
+                {skipBool && <Redirect to='/navigation'/>}
+                <div>
+                    {movies.length < 1 && <img id='cowLogo' src={cowLogo} alt='loading'/>}
+                    {movies.length >= 1 && 
+                        <div className='swipePage'>
+                            <img id='movieImage' src={process.env.REACT_APP_MDB_IMG + movies[0].poster_path} alt='movie'/>
+                        </div>}
+                    <button onClick={() => {
+                        setSkipBool(true);
+                        updateUser(user, setUser);
+                        }
+                    }>
+                    skip
+                    </button>
+                        
+                </div>
+            </Swipeable>
+            <NavigationPage/>
         </div>
-        </Swipeable>
     )
 }
 

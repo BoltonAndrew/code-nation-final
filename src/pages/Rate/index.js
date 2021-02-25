@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { updateUser } from '../../utils';
+import { NavigationPage } from '../navigation';
 
 export const Rate = ({user, setUser}) => {
     
@@ -50,6 +51,8 @@ export const Rate = ({user, setUser}) => {
                     </div>
                 )
             })}
+            <div id='placeholder'></div>
+            <NavigationPage/>
         </div>
     )
 }
