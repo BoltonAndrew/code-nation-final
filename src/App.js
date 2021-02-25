@@ -29,7 +29,7 @@ const App = () => {
             <Home user={user} setUser={setUser}/>
           </Route>
           <Route exact path="/profile">
-            <Profile/>
+            <Profile user={user}/>
           </Route>
           <Route exact path="/profileadmin">
             <ProfileAdmin/>
@@ -45,38 +45,6 @@ const App = () => {
           </Route>
         </div>
       </div>
-
-      <div>
-            <Route exact path="/">
-              <Home user={user} setUser={setUser}/>
-            </Route>
-            <Route exact path="/profile">
-              <Profile user={user}/>
-            </Route>
-            <Route exact path="/profileadmin">
-              <ProfileAdmin/>
-            </Route>
-            <Route exact path="/swipe">
-              <Swipe user={user} setUser={setUser}/>
-            </Route>
-            <Route exact path="/rate">
-              <Rate user={user} setUser={setUser}/>
-            </Route>
-            <Route exact path="/navigation">
-              <NavigationPage/>
-            </Route>
-
-            <Route exact path="/watchParty">
-              <WatchParty/>
-            </Route>
-
-            <Route exact path="/Register" />
-            <Route path='/Login' />
-            <Route path='/Logout' />
-
-          </div>
-
-
     </BrowserRouter>
   );
 }
