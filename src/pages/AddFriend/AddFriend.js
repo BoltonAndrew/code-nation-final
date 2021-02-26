@@ -55,38 +55,42 @@ form {
     border-radius: 20px;
     background-color: rgba(255,255,255, 0.6);
     box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
-
 }
 
 `
-
-
 
 const AddFriend = ({ user }) => {
     const [searchText, setSearchText] = useState("")
     const [userList, setUserList] = useState([])
 
-
     const handleSubmit =  (event) => {
         event.preventDefault();
 
         if(searchText === "") {
-        } else {
-            findUsers()
-        }
+        } else {findUsers()}
     }
+
     const handleChange = (e) => {
         setSearchText(`${e.target.value}`)
     }
 
-    useEffect(()=>{
-
-    }, [searchText])
+    useEffect(()=>{}, [searchText])
 
     const findUsers = async () => {
         const response = await searchUsers(searchText)
         setUserList(response.userList)
-        console.log(response.userList)
+    }
+    const handleClick = async (e) => {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/users/addfriend`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json',
+                       'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
+            body: JSON.stringify({
+                userName: userList[e.target.value],
+            }),
+        });
+        const data = await response.json()
+        console.log(data)
     }
     return(
         <StyledDiv>
@@ -95,11 +99,11 @@ const AddFriend = ({ user }) => {
                 <button onClick={handleSubmit}>Search</button>
             </form>
             <div className="results">
-            {userList.map((user, index)=>{
+            {userList.map((u, index)=>{
                 return (
-                    <div key = {index+1999}>
-                        <p key={index}>{user}</p>
-                        <button key={index + 999}>Add Friend</button>
+                    <div key={index+1999} className="row-wrap">
+                        <p key={index}>{u}</p>
+                        <button key={index + 999} value={index} onClick={(e) => handleClick(e)}>Add Friend</button>
                     </div>
                 )
                 })}
