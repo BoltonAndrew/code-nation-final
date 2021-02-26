@@ -1,7 +1,7 @@
-.app {
-    height: 20vh;
+.navbar {
+    height: 10vh;
     position: fixed;
-    top: 90%;
+    top: 90vh;
     width: 100vw;
     
 }

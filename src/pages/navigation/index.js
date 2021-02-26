@@ -5,7 +5,7 @@ import './index.css';
 export const NavigationPage = () => {
     return(
     
-    <div className="app">
+    <div className="navbar">
         <div id='navContainer'>
             <div id='topButton'>
                 <Link to='/watchParty'>&nbsp;Watch Party&nbsp;</Link>

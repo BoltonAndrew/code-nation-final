@@ -52,7 +52,6 @@ export const Rate = ({user, setUser}) => {
                 )
             })}
             <div id='placeholder'></div>
-            <NavigationPage/>
         </div>
     )
 }
