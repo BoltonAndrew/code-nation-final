@@ -1,5 +1,6 @@
-import react from "react";
+import react, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { searchUsers} from '../../utils';
 
 
 const StyledDiv = styled.div`
@@ -62,17 +63,46 @@ form {
 
 
 const AddFriend = ({ user }) => {
-    
+    const [searchText, setSearchText] = useState("")
+    const [userList, setUserList] = useState([])
+
+
+    const handleSubmit =  (event) => {
+        event.preventDefault();
+
+        if(searchText === "") {
+        } else {
+            findUsers()
+        }
+    }
+    const handleChange = (e) => {
+        setSearchText(`${e.target.value}`)
+    }
+
+    useEffect(()=>{
+
+    }, [searchText])
+
+    const findUsers = async () => {
+        const response = await searchUsers(searchText)
+        setUserList(response.userList)
+        console.log(response.userList)
+    }
     return(
         <StyledDiv>
-            <form>
-                <input>
-                
-                </input>
-                <button>Search</button>
+            <form onSubmit={handleSubmit}>
+                <input value={searchText} onChange={handleChange}></input>
+                <button onClick={handleSubmit}>Search</button>
             </form>
             <div className="results">
-
+            {userList.map((user, index)=>{
+                return (
+                    <div key = {index+1999}>
+                        <p key={index}>{user}</p>
+                        <button key={index + 999}>Add Friend</button>
+                    </div>
+                )
+                })}
             </div>
         </StyledDiv>
     )

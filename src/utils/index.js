@@ -110,3 +110,16 @@ export const swipeFetch = async (setMovies, user) => {
     };
     setMovies(movieArr);
 };
+
+export const searchUsers = async (searchInput) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/finduser`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
+        body: JSON.stringify({
+            input: searchInput,
+        }),
+    });
+    const data = await response.json();
+    return data
+};
