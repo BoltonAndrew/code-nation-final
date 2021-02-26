@@ -13,7 +13,6 @@ import { checkToken } from './utils';
 
 const App = () => {
   const [user, setUser] = useState({});
-  const [urlPath, setUrlPath] = useState('');
 
   useEffect(() => {
     checkToken(setUser);
@@ -30,20 +29,24 @@ const App = () => {
           </Route>
           <Route exact path="/profile">
             <Profile user={user}/>
+            <NavigationPage/>
           </Route>
           <Route exact path="/profileadmin">
             <ProfileAdmin/>
+            <NavigationPage/>
           </Route>
           <Route exact path="/swipe">
             <Swipe user={user} setUser={setUser}/>
+            <NavigationPage/>
           </Route>
           <Route exact path="/rate">
             <Rate user={user} setUser={setUser}/>
+            <NavigationPage/>
           </Route>
           <Route exact path="/watchParty">
             <WatchParty/>
+            <NavigationPage/>
           </Route>
-          {window.location.pathname !== '/' && <NavigationPage/>}
         </div>
       </div>
     </BrowserRouter>
