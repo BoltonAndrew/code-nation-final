@@ -13,13 +13,13 @@ import { checkToken } from './utils';
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [urlPath, setUrlPath] = useState('');
 
   useEffect(() => {
     checkToken(setUser);
   }, []);
   
-  const location = window.location.pathname;
-  console.log(location);
+  
 
   return (
     <BrowserRouter>
@@ -43,6 +43,7 @@ const App = () => {
           <Route exact path="/watchParty">
             <WatchParty/>
           </Route>
+          {window.location.pathname !== '/' && <NavigationPage/>}
         </div>
       </div>
     </BrowserRouter>
