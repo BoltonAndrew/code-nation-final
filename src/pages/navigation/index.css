@@ -1,7 +1,7 @@
 .navbar {
     height: 10vh;
     position: fixed;
-    top: 90vh;
+    top: 92vh;
     width: 100vw;
     
 }
@@ -14,7 +14,15 @@
 }
 
 #topButton {
-    text-align: center;
+    align-self: center;
+    height: 8vh;
+    width: 8vh;
+    background-image: url('../../images/watchButton.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: fixed;
+    right: 41vw;
+    bottom: 3vh;
 }
 
 
@@ -32,5 +40,39 @@
 .doubleLinkContainer {
     width: 33vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    position: relative;
+    top: 1vh;
+}
+
+.swipeButton {
+    height: 5vh;
+    width: 5vh;
+    background-image: url('../../images/swipeButton.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.rateButton {
+    height: 5vh;
+    width: 5vh;
+    background-image: url('../../images/rateButton.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.profileButton {
+    height: 5vh;
+    width: 5vh;
+    background-image: url('../../images/profileButton.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.settingsButton {
+    height: 5vh;
+    width: 5vh;
+    background-image: url('../../images/settingsButton.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 }
