@@ -9,6 +9,7 @@ import { Rate } from './pages/Rate';
 import { NavigationPage } from './pages/navigation';
 import  WatchParty from './pages/WatchParty';
 import { checkToken } from './utils';
+import AddFriend from "./pages/AddFriend/AddFriend"
 
 
 const App = () => {
@@ -46,6 +47,9 @@ const App = () => {
           <Route exact path="/watchParty">
             <WatchParty/>
             <NavigationPage/>
+          </Route>
+          <Route exact path="/addFriend">
+            <AddFriend user={user}/>
           </Route>
         </div>
       </div>

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import ParticleEffectButton from 'react-particle-effect-button'
 import { NavigationPage } from '../navigation';
 
+
 const baseFlex = css`
 display: flex;
 flex-direction: column;
