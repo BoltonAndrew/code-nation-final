@@ -1,0 +1,17 @@
+.watchParty {
+    height: 100vh;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.whoBox {
+    height: 20vh;
+    width: 80vw;
+    background-color: orange;
+}
+
+.suggestionsBox {
+    width: 80vw;
+}

@@ -7,7 +7,7 @@ justify-content: center;
 align-items: center;
 `
 const StyledWrapper = styled.div`
-height: 100vh;
+height: 92vh;
 width:100%;
 ${flex}
 flex-direction: column;
@@ -23,7 +23,7 @@ const StyledAvatar = styled.div`
     flex-direction: column;
     
     #profile {
-        width:40%;
+        width:37%;
         height:60%;
         border-radius: 50%;
         background-image: url(${user2});
@@ -128,7 +128,7 @@ return (
                 <input type="password" id="pwd" name="pwd"></input>
             </div>
             <div className="row">
-                <label for="pwd">Password</label>
+                <label for="pwd-rep">Re-Type Password</label>
                 <input type="password" id="pwd" name="pwd"></input>
             </div>
             <div className="row">
