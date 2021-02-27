@@ -1,4 +1,4 @@
-import react from "react";
+import react, { useState } from "react";
 import user2 from '../../images/user2.jpg';
 import styled, { css } from "styled-components";
 const flex = css`
@@ -105,45 +105,95 @@ const StlyedButon = styled.div`
     }
 `
 
-const AdminProfile = () => {
+const AdminProfile = ({ user }) => {
+const [userName, setUserName] = useState("");
+const [email, setEmail] = useState("");
+const [fname, setFname] = useState("");
+const [lname, setLname] = useState("");
+const [pwd1, setPwd1] = useState("");
+const [pwd2, setPwd2] = useState("");
 
+const handleUpdate = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
+        body: JSON.stringify({
+            userName: userName,
+            firstName: fname,
+            lastName: lname,
+            email: email,
+            password: pwd1
+        }),
+    });
+    const data = await response.json();
+    console.log(data);
+}
+const handleDelete = () => {
+    console.log("run delete profile")
+}
+
+const handleUserName = (e) => {
+    setUserName(`${e.target.value}`)
+    
+}
+const handleEmail = (e) => {
+    setEmail(`${e.target.value}`)
+    
+}
+const handlePwd1 = (e) => {
+    setPwd1(`${e.target.value}`)
+    
+}
+const handlePwd2 = (e) => {
+    setPwd2(`${e.target.value}`)
+
+}
+const handleFname = (e) => {
+    setFname(`${e.target.value}`)
+    
+}
+const handleLname = (e) => {
+    setLname(`${e.target.value}`)
+    
+}
 return (
     <StyledWrapper>
         <StyledAvatar>
             <div id="profile"></div>
-            <h3>USERNAME</h3>
+            <h3>{user.user}</h3>
             <hr/>
         </StyledAvatar>
         <StyledForm>
             <div className="row">
-                <label for="username">User name</label>
-                <input type="text" id="username" name="username"></input>
+                <label htmlFor="username">User name</label>
+                <input type="text" id="username" name="username" placeholder="Enter New User Name" value={userName} onChange={handleUserName}></input>
             </div>
             <div className="row">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email"></input>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter New Email" value={email} onChange={handleEmail}></input>
             </div>
             <div className="row">
-                <label for="pwd">Password</label>
-                <input type="password" id="pwd" name="pwd"></input>
+                <label htmlFor="pwd">Password</label>
+                <input type="password" id="pwd" name="pwd" placeholder="Enter New Password" value={pwd1} onChange={handlePwd1}></input>
             </div>
             <div className="row">
-                <label for="pwd">Password</label>
-                <input type="password" id="pwd" name="pwd"></input>
+                <label htmlFor="pwd2">Password</label>
+                <input type="password" id="pwd2" name="pwd2" placeholder="Enter New Password Again" value={pwd2} onChange={handlePwd2}></input>
             </div>
             <div className="row">
-                <label for="username">First Name</label>
-                <input type="text" id="firstname" name="firstname"></input>
+                <label htmlFor="username">First Name</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Enter New Name" value={fname} onChange={handleFname}></input>
             </div>
             <div className="row">
-                <label for="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname"></input>
+                <label htmlFor="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Enter New Last Name" value={lname} onChange={handleLname}></input>
             </div>
 
         </StyledForm>
         <StlyedButon>
-            <a href="#">UPDATE PROFILE</a>
-            <a href="#">DELETE PROFILE</a>
+            <a onClick={handleUpdate}>UPDATE PROFILE</a>
+            <a onClick={handleDelete}>DELETE PROFILE</a>
         </StlyedButon>
     </StyledWrapper>
 )
