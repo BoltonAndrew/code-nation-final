@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from "styled-components";
-import ParticleEffectButton from 'react-particle-effect-button'
-import { NavigationPage } from '../navigation';
+import ParticleEffectButton from 'react-particle-effect-button';
 
 const baseFlex = css`
 display: flex;
@@ -105,16 +104,16 @@ button:active {
 `
 
 
-const Profile = ({user}) => {
-    const [userBtn, setUserBtn] = useState(false)
-    const [movieBtn, setMovieBtn] = useState(false)
-    console.log(user)
-     const userClickHandler = () => {
-        setUserBtn(true)
-     }
-     const movieClickHandler = () => {
-        setMovieBtn(true)
-     }
+export const Profile = ({user}) => {
+    const [userBtn, setUserBtn] = useState(false);
+    const [movieBtn, setMovieBtn] = useState(false);
+
+    const userClickHandler = () => {
+        setUserBtn(true);
+    };
+    const movieClickHandler = () => {
+        setMovieBtn(true);
+    };
     return (
        
         <StyledContainer>
@@ -137,14 +136,6 @@ const Profile = ({user}) => {
                     <button onClick={movieClickHandler}>UPDATE MOVIES</button>
                 </ParticleEffectButton>
             </StyledButtons>
-        </StyledContainer>
-         
-      )
-
-}
-
-
-
-export default Profile
-
-
+        </StyledContainer>  
+      );
+};

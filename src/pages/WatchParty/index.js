@@ -1,22 +1,10 @@
-import React, { Component } from 'react';
-import StarRating from '../../components/StarRating';
+import React, { useState } from 'react';
 
-class WatchParty extends Component {
-    state = {
-        user: ''
-    }
-     render() {
-        return (
+export const WatchParty = () => {
 
-            <div>
-                <button>Suggested movie results</button>
-                <StarRating />
-            </div>
-            
-            )
-        }
-
-    }
-     
-
-export default WatchParty
+    return (
+        <div>
+            <button>Suggested movie results</button>
+        </div>
+    )
+}

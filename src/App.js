@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import { Home } from './pages/Home'; 
-import { Route, BrowserRouter, useLocation } from "react-router-dom";
-import Profile from './pages/Profile/';
+import { Route, BrowserRouter } from "react-router-dom";
+import { Profile } from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
-import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
+import { ProfileAdmin } from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
 import { NavigationPage } from './pages/navigation';
-import  WatchParty from './pages/WatchParty';
+import { WatchParty } from './pages/WatchParty';
 import { checkToken } from './utils';
+import './App.css';
 
 
 const App = () => {
@@ -17,8 +17,6 @@ const App = () => {
   useEffect(() => {
     checkToken(setUser);
   }, []);
-  
-  
 
   return (
     <BrowserRouter>
@@ -27,24 +25,27 @@ const App = () => {
           <Route exact path="/">
             <Home user={user} setUser={setUser}/>
           </Route>
-          <Route exact path="/profile">
+          <Route path="/profile">
             <Profile user={user}/>
             <NavigationPage/>
           </Route>
-          <Route exact path="/profileadmin">
+          <Route path="/profileadmin">
             <ProfileAdmin/>
             <NavigationPage/>
           </Route>
-          <Route exact path="/swipe">
+          <Route path="/swipe">
             <Swipe user={user} setUser={setUser}/>
             <NavigationPage/>
           </Route>
-          <Route exact path="/rate">
+          <Route path="/rate">
             <Rate user={user} setUser={setUser}/>
             <NavigationPage/>
           </Route>
-          <Route exact path="/watchParty">
+          <Route path="/watchParty">
             <WatchParty/>
+            <NavigationPage/>
+          </Route>
+          <Route path='/navigation'>
             <NavigationPage/>
           </Route>
         </div>
@@ -53,5 +54,4 @@ const App = () => {
   );
 }
 
- 
 export default App;
