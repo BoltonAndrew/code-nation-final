@@ -136,4 +136,4 @@ export const findMovies = async (watchersArr, setMovies) => {
     const data = await response.json();
     console.log(data);
     setMovies(data);
-}
+};
