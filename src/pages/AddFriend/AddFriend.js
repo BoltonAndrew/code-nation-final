@@ -56,7 +56,41 @@ form {
     background-color: rgba(255,255,255, 0.6);
     box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
 }
+.row-wrap {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background-color:rgba(106, 97, 171, 0.1);
+    border-bottom: 1px solid rgba(0,0,0, 0.1);
+    overflow-y:auto;
 
+}
+.row-wrap:first-child {
+    border-radius: 20px 20px 0 0;
+}
+.row-wrap:hover {
+    background-color:rgba(106, 97, 171, 0.3);
+    box-shadow:3px 3px 10px  rgba(0,0,0, 0.2) ;
+
+}
+p {
+    margin-left:5px;
+}
+button {
+    margin-right:5px;
+        height: 30px;
+        width:17%;
+        border-radius: 15px;
+        border:none;
+        background-color: rgba(106, 97, 171, 0.5);
+        box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
+    }
+    button:hover {
+    background-color: rgba(106, 97, 171, 0.7);
+}
+    button:active {
+        background-color: rgba(106, 97, 171, 1);
+    }
 `
 
 const AddFriend = ({ user }) => {
@@ -74,13 +108,19 @@ const AddFriend = ({ user }) => {
         setSearchText(`${e.target.value}`)
     }
 
-    useEffect(()=>{}, [searchText])
+    useEffect(()=>{
+
+    }, [searchText])
 
     const findUsers = async () => {
-        const response = await searchUsers(searchText)
-        setUserList(response.userList)
+        const response = await searchUsers(searchText);
+        setUserList(response.userList.filter((userL)=>{
+            if(!user.friends.includes(userL) && (userL != user.userName)) {
+                return userL
+            }
+        }));
     }
-    const handleClick = async (e) => {
+    const handleAdd = async (e) => {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/users/addfriend`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json',
@@ -90,7 +130,6 @@ const AddFriend = ({ user }) => {
             }),
         });
         const data = await response.json()
-        console.log(data)
     }
     return(
         <StyledDiv>
@@ -103,7 +142,7 @@ const AddFriend = ({ user }) => {
                 return (
                     <div key={index+1999} className="row-wrap">
                         <p key={index}>{u}</p>
-                        <button key={index + 999} value={index} onClick={(e) => handleClick(e)}>Add Friend</button>
+                        <button key={index + 999} value={index} onClick={(e) => handleAdd(e)}>Add</button>
                     </div>
                 )
                 })}
