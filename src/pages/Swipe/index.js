@@ -52,10 +52,8 @@ export const Swipe = ({user, setUser}) => {
                     }>
                     skip
                     </button>
-                        
                 </div>
             </Swipeable>
-            <NavigationPage/>
         </div>
     )
 }

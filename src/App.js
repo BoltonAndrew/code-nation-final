@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import { Home } from './pages/Home'; 
-import { Route, BrowserRouter, useLocation } from "react-router-dom";
-import Profile from './pages/Profile/';
+import { Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Profile } from './pages/Profile/';
 import { Swipe } from './pages/Swipe/';
-import ProfileAdmin from './pages/ProfileAdmin/ProfileAdmin';
 import { Rate } from './pages/Rate';
 import { NavigationPage } from './pages/navigation';
-import  WatchParty from './pages/WatchParty';
+import { WatchParty } from './pages/WatchParty';
 import { checkToken } from './utils';
 import AddFriend from "./pages/AddFriend/AddFriend"
 import AdminProfile from "./pages/AdminProfile/AdminProfile"
-
+import './App.css';
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -19,37 +17,42 @@ const App = () => {
   useEffect(() => {
     checkToken(setUser);
   }, []);
-  
-  const location = window.location.pathname;
-  console.log(location);
+
+  console.log(user)
 
   return (
     <BrowserRouter>
       <div className="App">
         <div>
+          {!user.user && <Redirect to='/'/>}
           <Route exact path="/">
             <Home user={user} setUser={setUser}/>
           </Route>
-          <Route exact path="/profile">
+          <Route path="/profile">
             <Profile user={user}/>
+            <NavigationPage/>
           </Route>
-          <Route exact path="/profileadmin">
-            <ProfileAdmin/>
-          </Route>
-          <Route exact path="/swipe">
+          <Route path="/swipe">
             <Swipe user={user} setUser={setUser}/>
+            <NavigationPage/>
           </Route>
-          <Route exact path="/rate">
+          <Route path="/rate">
             <Rate user={user} setUser={setUser}/>
+            <NavigationPage/>
           </Route>
-          <Route exact path="/watchParty">
-            <WatchParty/>
+          <Route path="/watchparty">
+            <WatchParty user={user}/>
+            <NavigationPage/>
           </Route>
-          <Route exact path="/addFriend">
+          <Route path='/navigation'>
+            <NavigationPage/>
+          </Route>
+          <Route exact path="/addfriend">
             <AddFriend user={user}/>
           </Route>
           <Route exact path="/settings">
             <AdminProfile user={user}/>
+            <NavigationPage/>
           </Route>
         </div>
       </div>
@@ -57,5 +60,4 @@ const App = () => {
   );
 }
 
- 
 export default App;

@@ -5,19 +5,19 @@ import './index.css';
 export const NavigationPage = () => {
     return(
     
-    <div className="app">
+    <div className="navbar">
         <div id='navContainer'>
-            <div id='topButton'>
-                <Link to='/watchParty'>&nbsp;Watch Party&nbsp;</Link>
+            <div >
+                <Link id='topButton' to='/watchParty'></Link>
             </div>
             <div id='LinkContainer'>
                 <div className='doubleLinkContainer'>
-                    <Link to='/swipe'>&nbsp;Swipe&nbsp;</Link>
-                    <Link to='/rate'>&nbsp;Rate&nbsp;</Link>
+                    <Link className='swipeButton' to='/swipe'></Link>
+                    <Link className='rateButton' to='/rate'></Link>
                 </div>
                 <div className='doubleLinkContainer'>
-                    <Link to='/Profile'>&nbsp;Profile&nbsp;</Link>
-                    <Link to='/profileadmin'>&nbsp;Settings&nbsp;</Link>
+                    <Link className='profileButton' to='/profile'></Link>
+                    <Link className='settingsButton' to='/settings'></Link>
                 </div>
             </div>
         </div>
