@@ -16,8 +16,8 @@ export const NavigationPage = () => {
                     <Link className='rateButton' to='/rate'></Link>
                 </div>
                 <div className='doubleLinkContainer'>
-                    <Link className='profileButton' to='/Profile'></Link>
-                    <Link className='settingsButton' to='/profileadmin'></Link>
+                    <Link className='profileButton' to='/profile'></Link>
+                    <Link className='settingsButton' to='/settings'></Link>
                 </div>
             </div>
         </div>
