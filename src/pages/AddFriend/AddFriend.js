@@ -130,6 +130,10 @@ const AddFriend = ({ user }) => {
             }),
         });
         const data = await response.json()
+        
+        let newUserList= userList;
+        newUserList.splice(e.target.value, 1)
+        setUserList([...newUserList]);
     }
     return(
         <StyledDiv>
