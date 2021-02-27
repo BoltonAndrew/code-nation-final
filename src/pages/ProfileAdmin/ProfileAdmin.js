@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AdminProfile from '../../components/AdminProfile';
 import BannerAdminProfile from '../../components/BannerAdminProfile';
-import { NavigationPage } from '../navigation';
 
 
    
-const Profile = () => {
+export const ProfileAdmin = () => {
      
     return (
         <div>
@@ -14,13 +13,6 @@ const Profile = () => {
             <BannerAdminProfile/> 
             <br />
             <hr />
-            <NavigationPage/>
         </div>
     )
 }
-
-
-
-
-export default Profile
-

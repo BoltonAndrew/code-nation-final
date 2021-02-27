@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from "styled-components";
-import ParticleEffectButton from 'react-particle-effect-button'
+import ParticleEffectButton from 'react-particle-effect-button';
 
 
 const baseFlex = css`
@@ -12,17 +12,18 @@ margin: 10px;
 `
 const StyledContainer = styled.div`
 height: 100vh;
-width: 100%;
+width: 100vw;
+position: relative;
 border-radius: 25px;
 background-color: #E5E9F8;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
-padding-top: 45px;
+padding-top: 0px;
 ` 
 const StyledTitle = styled.div`
-height:10%;
+height: 10%;
 width: 80%;
 border-radius: 25px;
 background-color: #fff;
@@ -59,7 +60,7 @@ background-color: #fff;
 ${baseFlex}
 overflow-y:auto;
 box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
-padding-top:45px;
+padding-top: 45px;
 p:first-child {
     font-weight:bold;
 }
@@ -72,7 +73,7 @@ p{
 }
 `
 const StyledButtons = styled.div`
-height:15%;
+height:30%;
 width: 80%;
 display: flex;
 justify-content:space-around;
@@ -102,17 +103,20 @@ button:active {
     background-color: rgba(106, 97, 171, 1);
 }
 `
-const Profile = ({user}) => {
-    const [userBtn, setUserBtn] = useState(false)
-    const [movieBtn, setMovieBtn] = useState(false)
-    console.log(user)
-     const userClickHandler = () => {
-        setUserBtn(true)
-     }
-     const movieClickHandler = () => {
-        setMovieBtn(true)
-     }
+
+
+export const Profile = ({user}) => {
+    const [userBtn, setUserBtn] = useState(false);
+    const [movieBtn, setMovieBtn] = useState(false);
+
+    const userClickHandler = () => {
+        setUserBtn(true);
+    };
+    const movieClickHandler = () => {
+        setMovieBtn(true);
+    };
     return (
+       
         <StyledContainer>
             <StyledTitle>
                 User Name<span style={{fontWeight:"bold"}}>{user.user}</span>
@@ -133,13 +137,6 @@ const Profile = ({user}) => {
                     <button onClick={movieClickHandler}>UPDATE MOVIES</button>
                 </ParticleEffectButton>
             </StyledButtons>
-        </StyledContainer>
-      )
-
-}
-
-
-
-export default Profile
-
-
+        </StyledContainer>  
+      );
+};
