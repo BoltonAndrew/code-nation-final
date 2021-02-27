@@ -8,9 +8,9 @@ import { Rate } from './pages/Rate';
 import { NavigationPage } from './pages/navigation';
 import { WatchParty } from './pages/WatchParty';
 import { checkToken } from './utils';
+import AddFriend from "./pages/AddFriend/AddFriend"
+import AdminProfile from "./pages/AdminProfile/AdminProfile"
 import './App.css';
-import AddFriend from "./pages/AddFriend/AddFriend";
-
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -48,8 +48,12 @@ const App = () => {
           </Route>
           <Route path='/navigation'>
             <NavigationPage/>
+          </Route>
           <Route exact path="/addFriend">
             <AddFriend user={user}/>
+          </Route>
+          <Route exact path="/settings">
+            <AdminProfile user={user}/>
           </Route>
         </div>
       </div>
