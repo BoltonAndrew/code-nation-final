@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import './css/main.css';
 
-export const MovieList = (movies) => {
+export const MovieList = ({movieList, user}) => {
+    const [movies, setMovies] = useState([]);
+
+    useEffect(() => {
+        if (movieList.length > 0) {
+            movieImageFinder()
+        }
+    }, [])
+
+    const movieImageFinder = () => {
+        let movieObj = []
+        user.acceptedMovies.map((movie, index) => {
+            if (movieList.includes(movie.title)) {
+                movieObj.push(movie);
+            }
+        })
+        setMovies(movieObj)
+    }
+
     return(
         <div>
-        {movies[0] ? movies.map((movie, index) => {
+            {movies.length > 0 && movies.map((movie, index) => {
             return(
-                <img key={index} src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt={movie.name}/>
+                <img className='movie' key={index} src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt={movie.title}/>
             )
-        }) : <h2>No suggestions found, try swiping more?</h2>}
+        })}
+        {movies.length < 1 && <h2>No suggestions found, try swiping more?</h2>}
         </div>
     )
 }

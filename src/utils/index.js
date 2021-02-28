@@ -98,9 +98,7 @@ export const swipeFetch = async (setMovies, user) => {
         const ranNum = Math.floor(Math.random() * 20);
         const response = await fetch(`${process.env.REACT_APP_MDB_API}/3/discover/movie?${process.env.REACT_APP_MDB_KEY}&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=100&with_watch_providers=8&watch_region=GB&page=${pageNum}`)
         const data = await response.json();
-        console.log(data.results);
         if (user.acceptedMovies) {
-            console.log('here somehow')
             if (!userMovies.includes(data.results[ranNum])) {
                 movieArr.push(data.results[ranNum]);
             };
@@ -130,10 +128,9 @@ export const findMovies = async (watchersArr, setMovies) => {
         headers: { 'Content-Type': 'application/json',
                    'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
         body: JSON.stringify({
-            users: {watchersArr},
+            users: watchersArr,
         }),
     });
     const data = await response.json();
-    console.log(data);
     setMovies(data);
 };
