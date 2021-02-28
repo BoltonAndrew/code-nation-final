@@ -18,8 +18,6 @@ const App = () => {
     checkToken(setUser);
   }, []);
 
-  console.log(user)
-
   return (
     <BrowserRouter>
       <div className="App">
