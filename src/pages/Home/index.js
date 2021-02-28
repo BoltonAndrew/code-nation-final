@@ -175,7 +175,8 @@ export const Home = ({user, setUser}) => {
     return(
         <div id='homepage'>
             <StyledNavbar>
-                <button onClick={() => setLoginBool(!loginBool) }>Login</button>
+                <button onClick={() => setLoginBool(!loginBool) 
+                }>Login</button>
                 <button onClick={() => setSignUp(!signUp) }>Sign Up</button>
                 <StyledLogin onSubmit={handleSubmit} loginBool={loginBool}>
                     <input id='emailInput' type='text' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/>
