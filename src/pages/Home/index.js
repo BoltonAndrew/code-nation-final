@@ -183,6 +183,7 @@ export const Home = ({user, setUser}) => {
                     <input id='passwordInput' type='text' placeholder='Password' value={pass}onChange={(event) => setPass(event.target.value)}/>
                     <button type='submit'>Login</button>
                     <div className="login"><p>Do you need an account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Sign In</button></div>
+                    <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
                 </StyledLogin>
                 
                 <StyledSign onSubmit={handleSubmit} signUp={signUp} loginBool={loginBool}>
@@ -193,6 +194,8 @@ export const Home = ({user, setUser}) => {
                     <input id='passwordInput' type='text' placeholder='Password' onChange={(event) => setPass(event.target.value)}/>
                     <button type='submit' className="sign-btn">Sign-up</button>
                     <div className="login"><p>Do you have account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Login</button></div>
+                    <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
+
                 </StyledSign>
                 
             </StyledNavbar>
