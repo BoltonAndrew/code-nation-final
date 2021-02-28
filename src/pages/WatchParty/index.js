@@ -5,6 +5,7 @@ import { searchUsers, findMovies } from '../../utils';
 import './index.css';
 
 export const WatchParty = ({ user }) => {
+    console.log(user)
     const [watchers, setWatchers] = useState([]);
     const [movieList, setMovieList] = useState({});
     const [suggestBool, setSuggestBool] = useState(false);

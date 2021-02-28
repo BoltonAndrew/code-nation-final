@@ -2,6 +2,147 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './index.css';
 import { addUser, login } from '../../utils';
+import styled from "styled-components";
+
+const StyledSign = styled.form`
+height: 100%;
+width: 200px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items:center;
+flex-flow: column nowrap;
+
+position: fixed;
+top:0;
+right: 0;
+padding: 10px;
+background-color: rgb(229,233,248);
+transform: ${({ signUp }) => signUp ? 'translateX(0)' : 'translateX(100%)'};
+transition: all 0.5s ease-in-out;
+z-index: 20;
+input {
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.sign-btn {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    color: #000;
+    background-color: rgba(106, 97, 171, 0.5);
+    box-shadow: none;
+    border: none;
+}
+.login {
+    margin-top: 10px;
+    display: flex;
+    align-items:center;
+    font-size: 0.7em;
+    p {
+        margin: 0;
+    }
+    button {
+        padding: 5px;
+        font-size: 0.7em;
+        font-weight: bold;
+        border-radius: 5px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        color: #000;
+        background-color: rgba(106, 97, 171, 0.2);
+        box-shadow: none;
+        border: none;
+    }
+}
+`
+const StyledLogin = styled.form`
+height: 100%;
+width: 200px;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items:center;
+flex-flow: column nowrap;
+
+position: fixed;
+top:0;
+right: 0;
+padding: 10px;
+background-color: rgb(229,233,248);
+transform: ${({ loginBool }) => loginBool ? 'translateX(0)' : 'translateX(100%)'};
+transition: all 0.5s ease-in-out;
+z-index: 20;
+input {
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+}
+.sign-btn {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 5px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    color: #000;
+    background-color: rgba(106, 97, 171, 0.5);
+    box-shadow: none;
+    border: none;
+}
+.login {
+    margin-top: 10px;
+    display: flex;
+    align-items:center;
+    font-size: 0.7em;
+    p {
+        margin: 0;
+    }
+    button {
+        padding: 5px;
+        font-size: 0.7em;
+        font-weight: bold;
+        border-radius: 5px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        color: #000;
+        background-color: rgba(106, 97, 171, 0.2);
+        box-shadow: none;
+        border: none;
+    }
+}
+`
+const StyledNavbar = styled.div`
+    height: 5vh;
+    background-color: rgba(106, 97, 171, 0.2);
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    button {
+        margin: 2px 5px 2px 5px;
+        padding: 5px;
+        font-size: 0.7em;
+        font-weight: bold;
+        border-radius: 5px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        color: #000;
+        background-color: rgba(106, 97, 171, 0.5);
+        box-shadow: none;
+        border: none;
+    }
+`
 
 export const Home = ({user, setUser}) => {
     const [loginBool, setLoginBool] = useState(false);
@@ -14,47 +155,46 @@ export const Home = ({user, setUser}) => {
     const [newUser, setNewUser] = useState(false);
     const [returningUser, setReturningUser] = useState(false);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!userName) {
-            const fetchObj = {email: email, password: pass};
-            login(fetchObj, setUser);
-            setEmail('');
-            setPass('')
-        } else if (userName) {
-            const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
-            addUser(fetchObj, setUser);
-            setEmail('');
-            setPass('');
-            setFName('');
-            setLName('');
-        }
+        // if (!userName) {
+        //     const fetchObj = {email: email, password: pass};
+        //     login(fetchObj, setUser);
+        //     setEmail('');
+        //     setPass('')
+        // } else if (userName) {
+        //     const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
+        //     addUser(fetchObj, setUser);
+        //     setEmail('');
+        //     setPass('');
+        //     setFName('');
+        //     setLName('');
+        // }
     }
 
     return(
         <div id='homepage'>
-            <div id='navbar'>
-                {!loginBool && !signUp && <><button onClick={() => setLoginBool(true)}>Login</button>
-                <button onClick={() => setSignUp(true)}>Sign Up</button></>}
-                {loginBool && <>
-                    <form onSubmit={handleSubmit}>
-                        <input id='emailInput' type='text' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/>
-                        <input id='passwordInput' type='text' placeholder='Password' value={pass}onChange={(event) => setPass(event.target.value)}/>
-                        <button type='submit'>Login</button>
-                    </form>
-                </>}
-                {signUp && <>
-                    <form onSubmit={handleSubmit}>
-                        <input id='emailInput' type='text' placeholder='Email' onChange={(event) => setEmail(event.target.value)}/>
-                        <input id='userNameInput' type='text' placeholder='Username' onChange={(event) => setUserName(event.target.value)}/>
-                        <input id='fNameInput' type='text' placeholder='First Name' onChange={(event) => setFName(event.target.value)}/>
-                        <input id='lNameInput' type='text' placeholder='Last Name' onChange={(event) => setLName(event.target.value)}/>
-                        <input id='passwordInput' type='text' placeholder='Password' onChange={(event) => setPass(event.target.value)}/>
-                        <button type='submit'>Sign-up</button>
-                    </form>
-                </>}
-            </div>
+            <StyledNavbar>
+                <button onClick={() => setLoginBool(!loginBool) }>Login</button>
+                <button onClick={() => setSignUp(!signUp) }>Sign Up</button>
+                <StyledLogin onSubmit={handleSubmit} loginBool={loginBool}>
+                    <input id='emailInput' type='text' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    <input id='passwordInput' type='text' placeholder='Password' value={pass}onChange={(event) => setPass(event.target.value)}/>
+                    <button type='submit'>Login</button>
+                    <div className="login"><p>Do you need an account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Sign In</button></div>
+                </StyledLogin>
+                
+                <StyledSign onSubmit={handleSubmit} signUp={signUp} loginBool={loginBool}>
+                    <input id='emailInput' type='text' placeholder='Email' onChange={(event) => setEmail(event.target.value)}/>
+                    <input id='userNameInput' type='text' placeholder='Username' onChange={(event) => setUserName(event.target.value)}/>
+                    <input id='fNameInput' type='text' placeholder='First Name' onChange={(event) => setFName(event.target.value)}/>
+                    <input id='lNameInput' type='text' placeholder='Last Name' onChange={(event) => setLName(event.target.value)}/>
+                    <input id='passwordInput' type='text' placeholder='Password' onChange={(event) => setPass(event.target.value)}/>
+                    <button type='submit' className="sign-btn">Sign-up</button>
+                    <div className="login"><p>Do you have account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Login</button></div>
+                </StyledSign>
+                
+            </StyledNavbar>
             <div id='mainBody'>
                 <h1 id='title'>Moo-V-Find</h1>
                 <p id='introText'>Do you spend more time looking for a movie than actually watching one? 

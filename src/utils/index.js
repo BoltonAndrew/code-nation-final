@@ -124,16 +124,16 @@ export const searchUsers = async (searchInput) => {
     return data
 };
 
-export const findMovies = async (watchersArr, setMovies) => {
+export const findMovies = async (watchersArr, setMovieList) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/movie/match`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
                    'Authorization': `Bearer ${localStorage.getItem('MyToken')}`},
         body: JSON.stringify({
-            users: {watchersArr},
+            users: watchersArr,
         }),
     });
     const data = await response.json();
     console.log(data);
-    setMovies(data);
+    setMovieList(data);
 };
