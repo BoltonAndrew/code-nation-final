@@ -16,7 +16,7 @@
 
 }
 
-body {
+.stuff {
    display: flex;
    justify-content: center;
    align-items: center;

@@ -15,13 +15,8 @@ const App = () => {
   const [user, setUser] = useState('');
   const [isAuth, setIsAuth] = useState(false);
 
-  
-
   useEffect(() => {
-    checkToken(setUser);
-    if (user) {
-      setIsAuth(true)
-    };
+    checkToken(setUser, setIsAuth);
   }, []);
 
   return (

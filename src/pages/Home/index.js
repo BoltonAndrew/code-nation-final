@@ -119,6 +119,7 @@ export const Home = ({user, setUser, setIsAuth}) => {
     }
 
     return(
+        <div className='stuff'>
         <div id='homepage'>
             <StyledNavbar>
                 <button onClick={() => setLoginBool(!loginBool) 
@@ -153,6 +154,7 @@ export const Home = ({user, setUser, setIsAuth}) => {
                 </p>
             </div>
             {user.user && <Redirect to='/swipe'/>}
+        </div>
         </div>
     )
 }
