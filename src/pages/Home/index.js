@@ -148,7 +148,7 @@ export const Home = ({user, setUser}) => {
                 
             </StyledNavbar>
             <div id='mainBody'>
-                <h1 id='title'>Moo-V-Find</h1>
+                <h1 data-text='Moo-V-find' id='title'>Moo-V-Find</h1>
                 <p id='introText'>Do you spend more time looking for a movie than actually watching one? 
                 Sick of not being able to find a movie that everyone enjoys?
                 Moo-V-Find will help you and your fellow movide watchers find a film that you'll all enjoy instead of spending hours choosing one.
