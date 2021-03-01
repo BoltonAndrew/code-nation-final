@@ -124,11 +124,11 @@ export const Profile = ({user}) => {
             </StyledTitle>
             <StyledFriendsList>
                 <p>Friends</p>
-                {user.friends.map((friend)=>{return <p>{friend}</p>})}
+                {user.friends.map((friend, i)=>{return <p key={i}>{friend}</p>})}
             </StyledFriendsList>
             <StyledMovieList>
                 <p>Movies in Watch List</p>
-                {user.acceptedMovies.map((m)=>{return <p>{m}</p> })}
+                {user.acceptedMovies.map((m, i)=>{return <p key={i}>{m.original_title}</p> })}
             </StyledMovieList>
             <StyledButtons>
                 <ParticleEffectButton hidden={userBtn} color="rgb(106, 97, 171)" direction="right" >
