@@ -27,7 +27,7 @@ export const MovieList = ({movieList, user}) => {
                 <img className='movie' key={index} src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt={movie.title}/>
             )
         })}
-        {movies.length < 1 && <h2>No suggestions found, try swiping more?</h2>}
+        {movies.length < 1 && <h3>No suggestions found, try swiping more?</h3>}
         </div>
     )
 }
