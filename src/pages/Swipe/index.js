@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import cowLogo from '../../images/cowLogo.png';
 import './index.css';
 import { swipeFetch, updateUser } from '../../utils';
-import { NavigationPage } from '../navigation';
 
 export const Swipe = ({user, setUser}) => {
     const [movies, setMovies] = useState([]);
@@ -19,7 +18,7 @@ export const Swipe = ({user, setUser}) => {
             const userObj = user;
             userObj.acceptedMovies.push(movies[0].title);
             setUser(userObj);
-            console.log(user);
+            updateUser(user, setUser);
             const movieArr = [...movies];
             movieArr.shift();
             setMovies([...movieArr]);
@@ -29,10 +28,10 @@ export const Swipe = ({user, setUser}) => {
             const userObj = user;
             userObj.rejectedMovies.push(movies[0].title);
             setUser(userObj);
+            updateUser(user, setUser);
             const movieArr = [...movies];
             movieArr.shift();
             setMovies(movieArr);
-            console.log(user);
         }
     }
     return(
@@ -47,7 +46,6 @@ export const Swipe = ({user, setUser}) => {
                         </div>}
                     <button onClick={() => {
                         setSkipBool(true);
-                        updateUser(user, setUser);
                         }
                     }>
                     skip

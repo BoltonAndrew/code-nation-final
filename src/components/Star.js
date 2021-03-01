@@ -3,7 +3,6 @@ import { FaStar } from 'react-icons/fa';
 
 
 export default function Star() {
-    const [rating, setRating] = useState(null);
     const [click, setClick] = useState(false);
     return (
         <label>
