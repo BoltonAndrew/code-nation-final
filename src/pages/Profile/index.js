@@ -115,6 +115,7 @@ export const Profile = ({user}) => {
     const movieClickHandler = () => {
         setMovieBtn(true);
     };
+    
     return (
        
         <StyledContainer>
