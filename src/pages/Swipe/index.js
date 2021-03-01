@@ -7,11 +7,12 @@ import { swipeFetch, updateUser } from '../../utils';
 
 export const Swipe = ({user, setUser}) => {
     const [movies, setMovies] = useState([]);
-    const [skipBool, setSkipBool] = useState(false);
 
     useEffect(() => {
-        swipeFetch(setMovies, user);
-    }, []);
+        if(movies < 1) {
+            swipeFetch(setMovies, user);
+        }
+    }, [movies]);
 
     const handleOnSwipe = (swipeDirection) => {
         if (swipeDirection === direction.RIGHT) {
@@ -37,19 +38,12 @@ export const Swipe = ({user, setUser}) => {
     return(
         <div>
             <Swipeable onSwipe={handleOnSwipe}>
-                {skipBool && <Redirect to='/rate'/>}
                 <div>
                     {movies.length < 1 && <img id='cowLogo' src={cowLogo} alt='loading'/>}
                     {movies.length >= 1 && 
                         <div className='swipePage'>
                             <img id='movieImage' src={process.env.REACT_APP_MDB_IMG + movies[0].poster_path} alt='movie'/>
                         </div>}
-                    <button onClick={() => {
-                        setSkipBool(true);
-                        }
-                    }>
-                    skip
-                    </button>
                 </div>
             </Swipeable>
         </div>
