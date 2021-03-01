@@ -115,7 +115,7 @@ const AddFriend = ({ user }) => {
     const findUsers = async () => {
         const response = await searchUsers(searchText);
         setUserList(response.userList.filter((userL)=>{
-            if(!user.friends.includes(userL) && (userL != user.userName)) {
+            if(!user.friends.includes(userL) && (userL !== user.userName)) {
                 return userL
             }
         }));
@@ -129,9 +129,9 @@ const AddFriend = ({ user }) => {
                 userName: userList[e.target.value],
             }),
         });
-        const data = await response.json()
+        await response.json()
         
-        let newUserList= userList;
+        let newUserList = userList;
         newUserList.splice(e.target.value, 1)
         setUserList([...newUserList]);
     }

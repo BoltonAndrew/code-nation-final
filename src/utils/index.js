@@ -9,10 +9,10 @@ export const login = async (userObj, setUser) => {
 
     });
     const data = await response.json();
-    if (data.user.userName) {
+    if (data.user) {
         setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName, friends: data.user.friends, acceptedMovies: data.user.acceptedMovies, rejectedMovies: data.user.rejectedMovies, watchedMovies: data.user.watchedMovies });
         localStorage.setItem('MyToken', data.token);
-    } 
+    }
 };
 
 export const logout = async (setUser) => {

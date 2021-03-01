@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import  './css/main.css';
 import Star from './Star';
 

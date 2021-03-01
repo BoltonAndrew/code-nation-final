@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './index.css';
 import { addUser, login } from '../../utils';
 import styled, { css } from "styled-components";
@@ -100,8 +100,6 @@ export const Home = ({user, setUser}) => {
     const [email, setEmail] = useState('');
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
-    const [newUser, setNewUser] = useState(false);
-    const [returningUser, setReturningUser] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -151,7 +149,7 @@ export const Home = ({user, setUser}) => {
                 <h1 id='title'>Moo-V-Find</h1>
                 <p id='introText'>Do you spend more time looking for a movie than actually watching one? 
                 Sick of not being able to find a movie that everyone enjoys?
-                Moo-V-Find will help you and your fellow movide watchers find a film that you'll all enjoy instead of spending hours choosing one.
+                Moo-V-Find will help you and your fellow movie watchers find a film that you'll all enjoy instead of spending hours choosing one.
                 </p>
             </div>
             {user.user && <Redirect to='/swipe'/>}
