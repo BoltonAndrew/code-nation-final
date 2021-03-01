@@ -105,19 +105,19 @@ export const Home = ({user, setUser}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (!userName) {
-        //     const fetchObj = {email: email, password: pass};
-        //     login(fetchObj, setUser);
-        //     setEmail('');
-        //     setPass('')
-        // } else if (userName) {
-        //     const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
-        //     addUser(fetchObj, setUser);
-        //     setEmail('');
-        //     setPass('');
-        //     setFName('');
-        //     setLName('');
-        // }
+        if (!userName) {
+            const fetchObj = {email: email, password: pass};
+            login(fetchObj, setUser);
+            setEmail('');
+            setPass('')
+        } else if (userName) {
+            const fetchObj = {name: userName, password: pass, email: email, fName: fName, lName: lName};
+            addUser(fetchObj, setUser);
+            setEmail('');
+            setPass('');
+            setFName('');
+            setLName('');
+        }
     }
 
     return(
