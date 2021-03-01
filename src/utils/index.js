@@ -1,4 +1,4 @@
-export const login = async (userObj, setUser) => {
+export const login = async (userObj, setUser, setIsAuth) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -6,13 +6,16 @@ export const login = async (userObj, setUser) => {
             email: userObj.email,
             password: userObj.password,
         }),
-
     });
-    const data = await response.json();
+    
+        const data = await response.json();
     if (data.user) {
         setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName, friends: data.user.friends, acceptedMovies: data.user.acceptedMovies, rejectedMovies: data.user.rejectedMovies, watchedMovies: data.user.watchedMovies });
         localStorage.setItem('MyToken', data.token);
+        setIsAuth(true)
     }
+    
+    
 };
 
 export const logout = async (setUser) => {
@@ -38,7 +41,7 @@ export const checkToken = async (setUser) => {
     }
 }
 
-export const addUser = async (userObj, setUser) => {
+export const addUser = async (userObj, setUser, setIsAuth) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,9 +53,13 @@ export const addUser = async (userObj, setUser) => {
             password: userObj.password,
         }),
     });
-    const data = await response.json();
-    setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName, friends: data.savedUser.friends, acceptedMovies: data.savedUser.acceptedMovies, rejectedMovies: data.savedUser.rejectedMovies, watchedMovies: data.savedUser.watchedMovies });
-    localStorage.setItem('MyToken', data.token);
+    
+        const data = await response.json();
+        setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName, friends: data.savedUser.friends, acceptedMovies: data.savedUser.acceptedMovies, rejectedMovies: data.savedUser.rejectedMovies, watchedMovies: data.savedUser.watchedMovies });
+        localStorage.setItem('MyToken', data.token);
+        setIsAuth(true)
+    
+    
 };
 
 export const updateUser = async (userState, setUser) => {

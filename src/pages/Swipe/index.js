@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Swipeable, direction } from 'react-deck-swiper';
-import { Redirect } from 'react-router-dom';
 import cowLogo from '../../images/cowLogo.png';
 import './index.css';
 import { swipeFetch, updateUser } from '../../utils';
@@ -46,7 +45,10 @@ export const Swipe = ({user, setUser}) => {
                         </div>}
                 </div>
             </Swipeable>
+            
         </div>
     )
 }
+
+
 
