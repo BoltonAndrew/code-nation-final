@@ -22,14 +22,14 @@ const App = () => {
     if (user) {
       setIsAuth(true)
     };
-  }, [user]);
+  }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
         <div>
           <Route exact path="/">
-            <Home user={user} setUser={setUser}/>
+            <Home user={user} setUser={setUser} setIsAuth={setIsAuth}/>
           </Route>
           {isAuth ? <>
           <Route path="/profile">
