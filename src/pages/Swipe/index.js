@@ -38,7 +38,7 @@ export const Swipe = ({user, setUser}) => {
     return(
         <div>
             <Swipeable onSwipe={handleOnSwipe}>
-                {skipBool && <Redirect to='/navigation'/>}
+                {skipBool && <Redirect to='/rate'/>}
                 <div>
                     {movies.length < 1 && <img id='cowLogo' src={cowLogo} alt='loading'/>}
                     {movies.length >= 1 && 
