@@ -27,7 +27,6 @@ background-color: yellow;
 export const WatchParty = ({ user }) => {
     const [watchers, setWatchers] = useState([]);
     const [movieList, setMovieList] = useState({});
-    const [suggestBool, setSuggestBool] = useState(false);
 
     const addWatcher = (e, index) => {
         e.preventDefault();
@@ -38,19 +37,21 @@ export const WatchParty = ({ user }) => {
 
     const suggestHandler = (e) => {
         e.preventDefault();
-        setSuggestBool(true);
         findMovies(watchers, setMovieList);
     }
 
     return (
+
         <StyledContainer>
             <StyledWatchers>
                 <h3>Who's Watching?</h3>
+
                 {user.friends[0] && user.friends.map((friend, index) => {
                     return(
                         <button key={index} onClick={(event) => addWatcher(event, index)} >{friend}</button>
                     )
                 })}
+
                 {watchers[0] && watchers.map((watcher, index) => {
                     return(
                         <p key={index}>{watcher}</p>

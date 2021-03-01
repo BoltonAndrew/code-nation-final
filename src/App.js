@@ -50,6 +50,7 @@ const App = () => {
           </Route>
           <Route path="/addfriend">
             <AddFriend user={user}/>
+            <NavigationPage/>
           </Route>
           <Route path="/settings">
             <AdminProfile user={user}/>

@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
 import { updateUser } from '../../utils';
-import { NavigationPage } from '../navigation';
 import StarRating from '../../components/StarRating';
 
 export const Rate = ({user, setUser}) => {
