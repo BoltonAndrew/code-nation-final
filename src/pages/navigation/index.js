@@ -7,9 +7,9 @@ export const NavigationPage = () => {
     
     <div className="navbar">
         <div id='navContainer'>
-            <div >
+            
                 <Link id='topButton' to='/watchParty'></Link>
-            </div>
+            
             <div id='LinkContainer'>
                 <div className='doubleLinkContainer'>
                     <Link className='swipeButton' to='/swipe'></Link>
