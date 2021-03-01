@@ -122,7 +122,7 @@ export const searchUsers = async (searchInput) => {
     return data
 };
 
-export const findMovies = async (watchersArr, setMovies) => {
+export const findMovies = async (watchersArr, setMovieList) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/movie/match`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json',
@@ -132,5 +132,6 @@ export const findMovies = async (watchersArr, setMovies) => {
         }),
     });
     const data = await response.json();
+
     setMovies(data);
 };

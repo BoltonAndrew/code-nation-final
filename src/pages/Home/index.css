@@ -1,15 +1,10 @@
 #homepage {
     display: flex;
     flex-direction: column;
+    background-color: #E5E9F8;
+
 }
 
-#navbar {
-    height: 5vh;
-    background-color: aquamarine;
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
-}
 
 #mainBody {
     height: 95vh;
