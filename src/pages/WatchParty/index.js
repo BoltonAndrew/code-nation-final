@@ -56,7 +56,7 @@ justify-content: flex-start;
 align-items: center;
 
 .friends {
-    height: 45%;
+    height: 35%;
     width: 95%;
     background-color: rgba(106, 97, 171, 0.1);
     margin: 5px;
