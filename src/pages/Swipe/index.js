@@ -16,7 +16,7 @@ export const Swipe = ({user, setUser}) => {
     const handleOnSwipe = (swipeDirection) => {
         if (swipeDirection === direction.RIGHT) {
             const userObj = user;
-            userObj.acceptedMovies.push(movies[0].title);
+            userObj.acceptedMovies.push(movies[0]);
             setUser(userObj);
             updateUser(user, setUser);
             const movieArr = [...movies];
@@ -26,7 +26,7 @@ export const Swipe = ({user, setUser}) => {
 
         if (swipeDirection === direction.LEFT) {
             const userObj = user;
-            userObj.rejectedMovies.push(movies[0].title);
+            userObj.rejectedMovies.push(movies[0]);
             setUser(userObj);
             updateUser(user, setUser);
             const movieArr = [...movies];
