@@ -12,20 +12,26 @@ import AdminProfile from "./pages/AdminProfile/AdminProfile"
 import './App.css';
 
 const App = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState('');
+  const [isAuth, setIsAuth] = useState(false);
+
+  
 
   useEffect(() => {
     checkToken(setUser);
-  }, []);
+    if (user) {
+      setIsAuth(true)
+    };
+  }, [user]);
 
   return (
     <BrowserRouter>
       <div className="App">
         <div>
-          {!user.user && <Redirect to='/'/>}
           <Route exact path="/">
             <Home user={user} setUser={setUser}/>
           </Route>
+          {isAuth ? <>
           <Route path="/profile">
             <Profile user={user}/>
             <NavigationPage/>
@@ -42,16 +48,13 @@ const App = () => {
             <WatchParty user={user}/>
             <NavigationPage/>
           </Route>
-          <Route path='/navigation'>
-            <NavigationPage/>
-          </Route>
-          <Route exact path="/addfriend">
+          <Route path="/addfriend">
             <AddFriend user={user}/>
           </Route>
-          <Route exact path="/settings">
+          <Route path="/settings">
             <AdminProfile user={user}/>
             <NavigationPage/>
-          </Route>
+          </Route> </> : <Redirect to='/'/>}
         </div>
       </div>
     </BrowserRouter>
