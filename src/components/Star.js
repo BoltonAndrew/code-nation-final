@@ -10,7 +10,7 @@ export default function Star() {
                     <input 
                     type='radio'
                     name='rating'
-                    onClick={() => setClick(true) } />
+                    onClick={() => setClick(!click)}/>
                 <FaStar
                  className='star'
                  style={ !click ? { color:'grey'} : {color : 'gold'} }

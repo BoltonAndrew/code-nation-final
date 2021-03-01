@@ -4,12 +4,9 @@ import './index.css';
 
 export const NavigationPage = () => {
     return(
-    
     <div className="navbar">
         <div id='navContainer'>
-            
                 <Link id='topButton' to='/watchParty'></Link>
-            
             <div id='LinkContainer'>
                 <div className='doubleLinkContainer'>
                     <Link className='swipeButton' to='/swipe'></Link>
@@ -22,8 +19,6 @@ export const NavigationPage = () => {
             </div>
         </div>
     </div>
-   
-
  )   
 }
        

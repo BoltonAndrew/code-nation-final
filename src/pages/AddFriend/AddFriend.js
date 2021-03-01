@@ -1,6 +1,6 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { searchUsers} from '../../utils';
+import { searchUsers } from '../../utils';
 
 
 const StyledDiv = styled.div`

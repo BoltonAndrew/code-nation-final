@@ -2,6 +2,7 @@ import React from 'react';
 import './index.css';
 import { updateUser } from '../../utils';
 import { NavigationPage } from '../navigation';
+import StarRating from '../../components/StarRating';
 
 export const Rate = ({user, setUser}) => {
     
@@ -38,6 +39,7 @@ export const Rate = ({user, setUser}) => {
                     <img className='movieImage' src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt='movie'/>
                     <button name='watched' onClick={(event) => clickHandler(event, index, movie)}>Watched?</button>
                     <button name='dislike' onClick={(event) => clickHandler(event, index, movie)}>👎</button>
+                    <StarRating/>
                     </div>
                 )
             })}

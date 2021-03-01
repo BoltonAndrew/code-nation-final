@@ -9,7 +9,6 @@ export const login = async (userObj, setUser) => {
 
     });
     const data = await response.json();
-    console.log(data);
     if (data.user.userName) {
         setUser({ userId: data.user._id, user: data.user.userName, fName: data.user.firstName, lName: data.user.lastName, friends: data.user.friends, acceptedMovies: data.user.acceptedMovies, rejectedMovies: data.user.rejectedMovies, watchedMovies: data.user.watchedMovies });
         localStorage.setItem('MyToken', data.token);
@@ -32,7 +31,7 @@ export const checkToken = async (setUser) => {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('MyToken')}` },
     });
     if (response.status === 401) {
-        setUser('');
+        console.log('No Auth')
     } else {
         const data = await response.json();
         setUser({ id: data._id, user: data.userName, fName: data.firstName, lName: data.lastName, friends: data.friends, acceptedMovies: data.acceptedMovies, rejectedMovies: data.rejectedMovies, watchedMovies: data.watchedMovies })
@@ -52,7 +51,6 @@ export const addUser = async (userObj, setUser) => {
         }),
     });
     const data = await response.json();
-    console.log(data);
     setUser({ userId: data.savedUser._id, user: data.savedUser.userName, fName: data.savedUser.firstName, lName: data.savedUser.lastName, friends: data.savedUser.friends, acceptedMovies: data.savedUser.acceptedMovies, rejectedMovies: data.savedUser.rejectedMovies, watchedMovies: data.savedUser.watchedMovies });
     localStorage.setItem('MyToken', data.token);
 };
@@ -74,7 +72,6 @@ export const updateUser = async (userState, setUser) => {
         }),
     });
     const data = await response.json();
-    console.log(data);
     setUser({ userId: data.updatedUser._id, user: data.updatedUser.userName, fName: data.updatedUser.firstName, lName: data.updatedUser.lastName , friends: data.updatedUser.friends, acceptedMovies: data.updatedUser.acceptedMovies, rejectedMovies: data.updatedUser.rejectedMovies, watchedMovies: data.updatedUser.watchedMovies});
 };
 
