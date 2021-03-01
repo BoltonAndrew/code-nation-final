@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './index.css';
 import { addUser, login } from '../../utils';
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const StyledSign = styled.form`
+const formStyle = css`
 height: 100%;
 width: 200px;
 display: flex;
@@ -18,7 +18,6 @@ top:0;
 right: 0;
 padding: 10px;
 background-color: rgb(229,233,248);
-transform: ${({ signUp }) => signUp ? 'translateX(0)' : 'translateX(100%)'};
 transition: all 0.5s ease-in-out;
 z-index: 20;
 input {
@@ -26,7 +25,7 @@ input {
     border-radius: 5px;
     border: none;
 }
-.sign-btn {
+.form-btn {
     margin-top: 10px;
     padding: 10px;
     font-size: 0.7em;
@@ -63,64 +62,13 @@ input {
     }
 }
 `
+const StyledSign = styled.form`
+${formStyle}
+transform: ${({ signUp }) => signUp ? 'translateX(0)' : 'translateX(100%)'};
+`
 const StyledLogin = styled.form`
-height: 100%;
-width: 200px;
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
-align-items:center;
-flex-flow: column nowrap;
-
-position: fixed;
-top:0;
-right: 0;
-padding: 10px;
-background-color: rgb(229,233,248);
+${formStyle}
 transform: ${({ loginBool }) => loginBool ? 'translateX(0)' : 'translateX(100%)'};
-transition: all 0.5s ease-in-out;
-z-index: 20;
-input {
-    margin-top: 10px;
-    border-radius: 5px;
-    border: none;
-}
-.sign-btn {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.7em;
-    font-weight: bold;
-    border-radius: 5px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    color: #000;
-    background-color: rgba(106, 97, 171, 0.5);
-    box-shadow: none;
-    border: none;
-}
-.login {
-    margin-top: 10px;
-    display: flex;
-    align-items:center;
-    font-size: 0.7em;
-    p {
-        margin: 0;
-    }
-    button {
-        padding: 5px;
-        font-size: 0.7em;
-        font-weight: bold;
-        border-radius: 5px;
-        display: flex;
-        justify-content:center;
-        align-items: center;
-        color: #000;
-        background-color: rgba(106, 97, 171, 0.2);
-        box-shadow: none;
-        border: none;
-    }
-}
 `
 const StyledNavbar = styled.div`
     height: 5vh;
@@ -181,7 +129,7 @@ export const Home = ({user, setUser}) => {
                 <StyledLogin onSubmit={handleSubmit} loginBool={loginBool}>
                     <input id='emailInput' type='text' placeholder='Email' value={email} onChange={(event) => setEmail(event.target.value)}/>
                     <input id='passwordInput' type='text' placeholder='Password' value={pass}onChange={(event) => setPass(event.target.value)}/>
-                    <button type='submit'>Login</button>
+                    <button type='submit' className="form-btn">Login</button>
                     <div className="login"><p>Do you need an account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Sign In</button></div>
                     <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
                 </StyledLogin>
@@ -192,7 +140,7 @@ export const Home = ({user, setUser}) => {
                     <input id='fNameInput' type='text' placeholder='First Name' onChange={(event) => setFName(event.target.value)}/>
                     <input id='lNameInput' type='text' placeholder='Last Name' onChange={(event) => setLName(event.target.value)}/>
                     <input id='passwordInput' type='text' placeholder='Password' onChange={(event) => setPass(event.target.value)}/>
-                    <button type='submit' className="sign-btn">Sign-up</button>
+                    <button type='submit' className="form-btn">Sign-up</button>
                     <div className="login"><p>Do you have account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Login</button></div>
                     <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
 
