@@ -2,7 +2,27 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MovieList } from '../../components/MovieList';
 import { findMovies } from '../../utils';
-import './index.css';
+import styled from "styled-components";
+
+const StyledContainer = styled.div`
+    width:100%;
+    height: 90vh;
+    background-color:red;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+`
+
+const StyledWatchers = styled.div`
+* {
+    margin: 0;
+    padding: 0;
+}
+width: 100%;
+height: 20vh;
+background-color: yellow;
+`
 
 export const WatchParty = ({ user }) => {
     const [watchers, setWatchers] = useState([]);
@@ -21,25 +41,29 @@ export const WatchParty = ({ user }) => {
     }
 
     return (
-        <div className='watchParty'>
-            <div className='whoBox'>
-                <p>Who's Watching?</p>
+
+        <StyledContainer>
+            <StyledWatchers>
+                <h3>Who's Watching?</h3>
+
                 {user.friends[0] && user.friends.map((friend, index) => {
                     return(
                         <button key={index} onClick={(event) => addWatcher(event, index)} >{friend}</button>
                     )
                 })}
-                 <Link to='/addfriend'>Add Friends</Link>
+
                 {watchers[0] && watchers.map((watcher, index) => {
                     return(
                         <p key={index}>{watcher}</p>
                     )
                 })}
-            </div>
+                <Link to='/addfriend'>Add Friends</Link>
+
+            </StyledWatchers>
             <div className='suggestionsBox'>
                 <button onClick={(event) => suggestHandler(event)}>Get Suggestions</button>
                 {movieList.length > 0 && <MovieList movieList={movieList} user={user}/>}
             </div>
-        </div>
+        </StyledContainer>
     )
 }
