@@ -32,7 +32,14 @@ const StyledContainer = styled.div`
         box-shadow: none;
         border: none;
     }
+    button:hover {
+        background-color: rgba(106, 97, 171, 0.9);
     }
+    button:active {
+        background-color: rgba(106, 97, 171, 1);
+    }
+}
+    
 `
 
 const StyledWatchers = styled.div`
@@ -41,7 +48,7 @@ const StyledWatchers = styled.div`
     padding: 0;
 }
 width: 100%;
-height: 25vh;
+height: 30vh;
 margin: 20px;
 display: flex;
 flex-direction: column;
@@ -102,6 +109,18 @@ align-items: center;
 
 a {
     text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 5px;
+    background-color: rgba(106, 97, 171, 0.5);
+    border-radius: 10px;
+}
+a:hover {
+    background-color: rgba(106, 97, 171, 0.7);
+}
+a:active {
+    background-color: rgba(106, 97, 171, 1);
+
 }
 a:visited {
     text-decoration: none;
@@ -115,7 +134,10 @@ export const WatchParty = ({ user }) => {
     const addWatcher = (e, index) => {
         e.preventDefault();
         let tempArr = [...watchers];
-        tempArr.push(user.friends[index]);
+        if(!tempArr.includes(user.friends[index])) {
+            tempArr.push(user.friends[index]);
+        } 
+        
         setWatchers(tempArr);
     };
 
@@ -143,7 +165,7 @@ export const WatchParty = ({ user }) => {
                     )
                 })}
                 </div>
-                <Link to='/addfriend'>Add Friends</Link>
+                <Link to='/addfriend'> Add Friends</Link>
 
             </StyledWatchers>
             <div className='suggestionsBox'>
