@@ -45,7 +45,10 @@ export const Swipe = ({user, setUser}) => {
                         </div>}
                 </div>
             </Swipeable>
+            
         </div>
     )
 }
+
+
 
