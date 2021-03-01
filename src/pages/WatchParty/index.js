@@ -40,7 +40,7 @@ export const WatchParty = ({ user }) => {
             </div>
             <div className='suggestionsBox'>
                 <button onClick={(event) => suggestHandler(event)}>Get Suggestions</button>
-                {suggestBool && <MovieList movies={movieList}/>}
+                {movieList.length > 0 && <MovieList movieList={movieList} user={user}/>}
             </div>
         </div>
     )
