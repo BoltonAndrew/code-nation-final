@@ -10,11 +10,16 @@ justify-content: center;
 align-items: center;
 margin: 10px;
 `
+const StyledWrapper = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
 const StyledContainer = styled.div`
-height: 100vh;
+height: 92vh;
 width: 100vw;
 position: relative;
-border-radius: 25px;
 background-color: #E5E9F8;
 display: flex;
 flex-direction: column;
@@ -53,14 +58,18 @@ p{
 }
 `
 const StyledMovieList = styled.div`
-height:25%;
+height:35%;
 width: 80%;
 border-radius: 25px;
 background-color: #fff;
 ${baseFlex}
 overflow-y:auto;
 box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
-padding-top: 45px;
+display:flex;
+flex-direction:column;
+justify-content:  flex-start;
+align-items: center;
+
 p:first-child {
     font-weight:bold;
 }
@@ -72,23 +81,27 @@ p{
     text-align:center;
 }
 `
-const StyledButtons = styled.div`
-height:30%;
-width: 80%;
+const StyledButtonWrapper = styled.div`
+height:20%;
+width: 100%;
+position: fixed;
 display: flex;
-justify-content:space-around;
+justify-content:space-between;
 align-items:center;
-.styles_content__1Phom {
-    box-shadow: 4px 4px 10px  black;
-}
+bottom: 100px;
+`
+const StyledButton = styled.div`
+width: 100%;
+height: 100%;
+display: flex;
+justify-content:center;
+align-items:center;
+
 button {
     padding: 4px;
     font-size: 0.7em;
     font-weight: bold;
     border-radius: 5px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
     color: #000;
     background-color: rgba(106, 97, 171, 0.5);
     box-shadow: none;
@@ -108,7 +121,7 @@ button:active {
 export const Profile = ({user}) => {
     const [userBtn, setUserBtn] = useState(false);
     const [movieBtn, setMovieBtn] = useState(false);
-
+    console.log(user.acceptedMovies)
     const userClickHandler = () => {
         setUserBtn(true);
     };
@@ -117,7 +130,7 @@ export const Profile = ({user}) => {
     };
     
     return (
-       
+       <StyledWrapper>
         <StyledContainer>
             <StyledTitle>
                 User Name<span style={{fontWeight:"bold"}}>{user.user}</span>
@@ -130,14 +143,20 @@ export const Profile = ({user}) => {
                 <p>Movies in Watch List</p>
                 {user.acceptedMovies.map((m, i)=>{return <p key={i}>{m.original_title}</p> })}
             </StyledMovieList>
-            <StyledButtons>
-                <ParticleEffectButton hidden={userBtn} color="rgb(106, 97, 171)" direction="right" >
-                    <button onClick={userClickHandler}>UPDATE USER</button>
-                </ParticleEffectButton>
-                <ParticleEffectButton hidden={movieBtn} color="rgb(106, 97, 171)" >
-                    <button onClick={movieClickHandler}>UPDATE MOVIES</button>
-                </ParticleEffectButton>
-            </StyledButtons>
-        </StyledContainer>  
+
+        </StyledContainer>
+            <StyledButtonWrapper>  
+                <StyledButton>
+                    <ParticleEffectButton hidden={userBtn} color="rgb(106, 97, 171)" direction="right" >
+                        <button onClick={userClickHandler}>UPDATE USER</button>
+                    </ParticleEffectButton>
+                </StyledButton>
+                <StyledButton>
+                    <ParticleEffectButton hidden={movieBtn} color="rgb(106, 97, 171)" >
+                        <button onClick={movieClickHandler}>UPDATE MOVIES</button>
+                    </ParticleEffectButton>
+                </StyledButton>
+            </StyledButtonWrapper>
+        </StyledWrapper>
       );
 };
