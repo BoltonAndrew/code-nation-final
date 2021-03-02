@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import user2 from '../../images/user2.jpg';
 import styled, { css } from "styled-components";
 import { deleteUser } from '../../utils';
+import { LogoutButton } from '../../components/Logout';
 
 const flex = css`
 display:flex;
@@ -195,6 +196,7 @@ return (
             {errorMessage && <p>{errorMessage}</p>}
         </StyledForm>
         <StlyedButon>
+            <LogoutButton setUser={setUser} setIsAuth={setIsAuth}/>
             <a onClick={handleUpdate}>UPDATE PROFILE</a>
             <a onClick={handleDelete}>DELETE PROFILE</a>
         </StlyedButon>

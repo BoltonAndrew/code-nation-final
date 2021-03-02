@@ -15,14 +15,16 @@ export const login = async (userObj, setUser, setIsAuth) => {
     }
 };
 
-export const logout = async (setUser) => {
+export const logout = async (event, setUser, setIsAuth) => {
+    event.preventDefault();
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/logout`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('MyToken')}` },
     });
     await response.json();
     setUser('');
-    localStorage.removeItem('MyToken')
+    localStorage.removeItem('MyToken');
+    setIsAuth(false);
 };
 
 export const checkToken = async (setUser, setIsAuth) => {
