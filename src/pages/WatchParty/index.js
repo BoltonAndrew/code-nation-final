@@ -137,7 +137,7 @@ export const WatchParty = ({ user }) => {
         if(!tempArr.includes(user.friends[index])) {
             tempArr.push(user.friends[index]);
         } 
-        
+        console.log(tempArr)
         setWatchers(tempArr);
     };
 
