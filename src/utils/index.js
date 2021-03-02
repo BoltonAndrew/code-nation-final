@@ -105,12 +105,14 @@ export const swipeFetch = async (setMovies, user) => {
         const data = await response.json();
         const currentMovie = data.results[ranNum]
         if (!allMovies.includes(currentMovie.title)) {
-            movieArr.push(currentMovie);
+            let titles = movieArr.map((movie) => {
+                return movie.title
+            })
+            if (!titles.includes(currentMovie.title)) {
+                movieArr.push(currentMovie);
+            }
         }
-
     }
-
-
     setMovies(movieArr);
 };
 
