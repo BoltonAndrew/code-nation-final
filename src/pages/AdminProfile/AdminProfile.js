@@ -1,6 +1,8 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import user2 from '../../images/user2.jpg';
 import styled, { css } from "styled-components";
+import { deleteUser } from '../../utils';
+
 const flex = css`
 display:flex;
 justify-content: center;
@@ -105,13 +107,13 @@ const StlyedButon = styled.div`
     }
 `
 
-const AdminProfile = ({ user }) => {
-const [userName, setUserName] = useState("");
+const AdminProfile = ({ user, setUser, setIsAuth }) => {
+const [userName, setUserName] = useState(user.user);
 const [email, setEmail] = useState("");
-const [fname, setFname] = useState("");
-const [lname, setLname] = useState("");
+const [fname, setFname] = useState(user.fName);
+const [lname, setLname] = useState(user.lName);
 const [pwd1, setPwd1] = useState("");
-const [pwd2, setPwd2] = useState("");
+const [errorMessage, setErrorMessage] = useState('')
 
 const handleUpdate = async () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
@@ -126,11 +128,20 @@ const handleUpdate = async () => {
             password: pwd1
         }),
     });
-    const data = await response.json();
-    console.log(data);
+    
+    if (response.status === 404) {
+        setErrorMessage('Incorrect Details')
+    } else {
+        const data = await response.json();
+        setUser({ userId: data.updatedUser._id, user: data.updatedUser.userName, fName: data.updatedUser.firstName, lName: data.updatedUser.lastName , friends: data.updatedUser.friends, acceptedMovies: data.updatedUser.acceptedMovies, rejectedMovies: data.updatedUser.rejectedMovies, watchedMovies: data.updatedUser.watchedMovies});
+        setErrorMessage('');
+        setPwd1('');
+        setEmail('');
+    }
+    
 }
 const handleDelete = () => {
-    console.log("run delete profile")
+    deleteUser(setUser, setIsAuth)
 }
 
 const handleUserName = (e) => {
@@ -144,10 +155,6 @@ const handleEmail = (e) => {
 const handlePwd1 = (e) => {
     setPwd1(`${e.target.value}`)
     
-}
-const handlePwd2 = (e) => {
-    setPwd2(`${e.target.value}`)
-
 }
 const handleFname = (e) => {
     setFname(`${e.target.value}`)
@@ -171,15 +178,11 @@ return (
             </div>
             <div className="row">
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter New Email" value={email} onChange={handleEmail}></input>
+                <input type="email" id="email" name="email" required placeholder="Enter New Email" value={email} onChange={handleEmail}></input>
             </div>
             <div className="row">
                 <label htmlFor="pwd">Password</label>
-                <input type="password" id="pwd" name="pwd" placeholder="Enter New Password" value={pwd1} onChange={handlePwd1}></input>
-            </div>
-            <div className="row">
-                <label htmlFor="pwd2">Password</label>
-                <input type="password" id="pwd2" name="pwd2" placeholder="Enter New Password Again" value={pwd2} onChange={handlePwd2}></input>
+                <input type="password" id="pwd" name="pwd" required placeholder="Enter New Password" value={pwd1} onChange={handlePwd1}></input>
             </div>
             <div className="row">
                 <label htmlFor="username">First Name</label>
@@ -189,7 +192,7 @@ return (
                 <label htmlFor="lastname">Last Name</label>
                 <input type="text" id="lastname" name="lastname" placeholder="Enter New Last Name" value={lname} onChange={handleLname}></input>
             </div>
-
+            {errorMessage && <p>{errorMessage}</p>}
         </StyledForm>
         <StlyedButon>
             <a onClick={handleUpdate}>UPDATE PROFILE</a>
