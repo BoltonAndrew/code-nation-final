@@ -48,7 +48,7 @@ const App = () => {
             <NavigationPage/>
           </Route>
           <Route path="/settings">
-            <AdminProfile user={user}/>
+            <AdminProfile user={user} setUser={setUser} setIsAuth={setIsAuth}/>
             <NavigationPage/>
           </Route> </> : <Redirect to='/'/>}
         </div>

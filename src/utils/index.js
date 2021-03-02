@@ -77,13 +77,14 @@ export const updateUser = async (userState, setUser) => {
     setUser({ userId: data.updatedUser._id, user: data.updatedUser.userName, fName: data.updatedUser.firstName, lName: data.updatedUser.lastName , friends: data.updatedUser.friends, acceptedMovies: data.updatedUser.acceptedMovies, rejectedMovies: data.updatedUser.rejectedMovies, watchedMovies: data.updatedUser.watchedMovies});
 };
 
-export const deleteUser = async (setUser) => {
+export const deleteUser = async (setUser, setIsAuth) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/users/myprofile`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('MyToken')}` },
     });
     await response.json();
     setUser('');
+    setIsAuth(false)
 };
 
 export const swipeFetch = async (setMovies, user) => {
@@ -140,3 +141,4 @@ export const findMovies = async (watchersArr, setMovieList) => {
     
     setMovieList(data);
 };
+
