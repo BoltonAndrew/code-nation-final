@@ -88,23 +88,28 @@ export const deleteUser = async (setUser) => {
 
 export const swipeFetch = async (setMovies, user) => {
     let movieArr = [];
-    let userMovies;
-    if (user.acceptedMovies) {
-        userMovies = user.acceptedMovies.concat(user.watchedMovies, user.rejectedMovies)
-    };
+    let userMovies = user.acceptedMovies.map((movie) => {
+        return movie.title
+    })
+    let rejMovies = user.rejectedMovies.map((movie) => {
+        return movie.title
+    })
+
+    const allMovies = userMovies.concat(rejMovies)
+    
     while (movieArr.length < 10) {
         const pageNum = Math.floor(Math.random() * 57) + 1
         const ranNum = Math.floor(Math.random() * 20);
         const response = await fetch(`${process.env.REACT_APP_MDB_API}/3/discover/movie?${process.env.REACT_APP_MDB_KEY}&sort_by=popularity.desc&vote_average.gte=6&vote_count.gte=100&with_watch_providers=8&watch_region=GB&page=${pageNum}`)
         const data = await response.json();
-        if (user.acceptedMovies) {
-            if (!userMovies.includes(data.results[ranNum])) {
-                movieArr.push(data.results[ranNum]);
-            };
-        } else {
-            movieArr.push(data.results[ranNum]);
+        const currentMovie = data.results[ranNum]
+        if (!allMovies.includes(currentMovie.title)) {
+            movieArr.push(currentMovie);
         }
-    };
+
+    }
+
+
     setMovies(movieArr);
 };
 
@@ -131,6 +136,7 @@ export const findMovies = async (watchersArr, setMovieList) => {
         }),
     });
     const data = await response.json();
-
+    console.log(data);
+    
     setMovieList(data);
 };
