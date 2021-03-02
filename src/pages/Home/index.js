@@ -3,7 +3,11 @@ import { Redirect } from 'react-router-dom';
 import './index.css';
 import { addUser, login } from '../../utils';
 import styled, { css } from "styled-components";
+import { ThemeProvider } from 'styled-components';
+import { ligthTheme, darkTheme, GlobalStyles } from '../../components/styleComp/theme';
 
+
+ 
 const formStyle = css`
 height: 100%;
 width: 200px;
@@ -100,6 +104,8 @@ export const Home = ({user, setUser, setIsAuth}) => {
     const [email, setEmail] = useState('');
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
+    const [theme, setTheme] = useState(false);
+    console.log(theme)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -118,10 +124,19 @@ export const Home = ({user, setUser, setIsAuth}) => {
         }
     }
 
+    const themeToggler = () => {
+        theme === false ? setTheme(true) : setTheme(false)
+    }
+
     return(
+        <ThemeProvider theme={theme === false ? ligthTheme : darkTheme}>
+            <GlobalStyles />
         <div className='stuff'>
         <div id='homepage'>
+            
             <StyledNavbar>
+            <button onClick={() => themeToggler()}>Change Theme</button>
+
                 <button onClick={() => setLoginBool(!loginBool) 
                 }>Login</button>
                 <button onClick={() => setSignUp(!signUp) }>Sign Up</button>
@@ -152,9 +167,11 @@ export const Home = ({user, setUser, setIsAuth}) => {
                 Sick of not being able to find a movie that everyone enjoys?
                 Moo-V-Find will help you and your fellow movie watchers find a film that you'll all enjoy instead of spending hours choosing one.
                 </p>
+                
             </div>
             {user.user && <Redirect to='/swipe'/>}
         </div>
         </div>
+        </ThemeProvider>
     )
 }
