@@ -116,7 +116,7 @@ const AddFriend = ({ user, setUser }) => {
     const findUsers = async () => {
         const response = await searchUsers(searchText);
         setUserList(response.userList.filter((userL)=>{
-            if(!user.friends.includes(userL) && (userL !== user.userName)) {
+            if(!user.friends.includes(userL) && (userL !== user.user)) {
                 return userL
             }
         }));

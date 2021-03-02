@@ -94,9 +94,9 @@ align-items: center;
 
 
     p {
-        height: 1.4em;
+        height: 1.8em;
         margin: 4px;
-        padding: 1px;
+        padding: 2px;
         background-color: rgba(106, 97, 171, 0.7);
         border-radius: 10px;
     }
