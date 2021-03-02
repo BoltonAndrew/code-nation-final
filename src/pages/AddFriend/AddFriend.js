@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { searchUsers } from '../../utils';
 
 
+
 const StyledDiv = styled.div`
 height: 100vh;
 width:100%;
@@ -93,7 +94,7 @@ button {
     }
 `
 
-const AddFriend = ({ user }) => {
+const AddFriend = ({ user, setUser }) => {
     const [searchText, setSearchText] = useState("")
     const [userList, setUserList] = useState([])
 
@@ -129,11 +130,13 @@ const AddFriend = ({ user }) => {
                 userName: userList[e.target.value],
             }),
         });
-        await response.json()
+        const data = await response.json()
         
         let newUserList = userList;
         newUserList.splice(e.target.value, 1)
         setUserList([...newUserList]);
+       setUser({ userId: data.updatedUser._id, user: data.updatedUser.userName, fName: data.updatedUser.firstName, lName: data.updatedUser.lastName , friends: data.updatedUser.friends, acceptedMovies: data.updatedUser.acceptedMovies, rejectedMovies: data.updatedUser.rejectedMovies, watchedMovies: data.updatedUser.watchedMovies});
+
     }
     return(
         <StyledDiv>

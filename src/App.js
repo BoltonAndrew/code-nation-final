@@ -44,7 +44,7 @@ const App = () => {
             <NavigationPage/>
           </Route>
           <Route path="/addfriend">
-            <AddFriend user={user}/>
+            <AddFriend user={user} setUser={setUser}/>
             <NavigationPage/>
           </Route>
           <Route path="/settings">
