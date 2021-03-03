@@ -142,7 +142,7 @@ export const Home = ({user, setUser, setIsAuth}) => {
                 <button onClick={() => setSignUp(!signUp) }>Sign Up</button>
                 <StyledLogin name='log' onSubmit={handleSubmit} loginBool={loginBool}>
                     <input id='emailInput' type='text' placeholder='Email' required value={email} onChange={(event) => setEmail(event.target.value)}/>
-                    <input id='passwordInput' type='text' placeholder='Password' required value={pass}onChange={(event) => setPass(event.target.value)}/>
+                    <input id='passwordInput' type='password' placeholder='Password' required value={pass}onChange={(event) => setPass(event.target.value)}/>
                     <button type='submit' className="form-btn">Login</button>
                     <div className="login"><p>Do you need an account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Sign In</button></div>
                     <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
@@ -153,7 +153,7 @@ export const Home = ({user, setUser, setIsAuth}) => {
                     <input id='userNameInput' type='text' placeholder='Username' required onChange={(event) => setUserName(event.target.value)}/>
                     <input id='fNameInput' type='text' placeholder='First Name' required onChange={(event) => setFName(event.target.value)}/>
                     <input id='lNameInput' type='text' placeholder='Last Name' required onChange={(event) => setLName(event.target.value)}/>
-                    <input id='passwordInput' type='text' placeholder='Password' required onChange={(event) => setPass(event.target.value)}/>
+                    <input id='passwordInput' type='password' placeholder='Password' required onChange={(event) => setPass(event.target.value)}/>
                     <button type='submit' className="form-btn">Sign-up</button>
                     <div className="login"><p>Do you have account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Login</button></div>
                     <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
