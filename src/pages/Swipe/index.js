@@ -35,6 +35,15 @@ align-items: center;
     border: 1px solid rgba(0,0,0, 0.2);
     border-radius: 5px;
     box-shadow: 15px 15px 10px  rgba(0,0,0, 0.4);
+    @media(min-width: 768px) {
+        width: 70vw;
+        max-height: 70vh;
+    }
+    @media(min-width: 1440px) {
+        width: 40vw;
+        max-height: 60vh;
+    }
+
 }
 
 .swipePage {
@@ -59,6 +68,14 @@ display: flex;
 flex-direction: column;
 justify-content: flex-start;
 align-items: center;
+@media(min-width: 768px) {
+    width: 65%;
+    height: 50%;
+}
+@media(min-width: 1440px) {
+    width: 40%;
+    height: 50%;
+}
 h2 {
     margin-top:10px;
     text-shadow: 1px 1px 5px  rgba(0,0,0, 0.2);
