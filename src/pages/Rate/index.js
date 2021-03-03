@@ -2,6 +2,25 @@ import React from 'react';
 import './index.css';
 import { updateUser } from '../../utils';
 import StarRating from '../../components/StarRating';
+import styled from "styled-components";
+
+const StyledContainer = styled.div`
+width: 100vw;
+height: 100%;
+display:flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+
+
+.wrapimage {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+`
 
 export const Rate = ({user, setUser}) => {
     
@@ -30,22 +49,22 @@ export const Rate = ({user, setUser}) => {
         }
     }
     return(
-        <div className='rateMoviesPage'>
+        <StyledContainer>
             <h2>Liked Movies</h2>
             {user.acceptedMovies.map((movie, index) => {
                 return(
-                    <div key={index}>
-                    <img className='movieImage' src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt='movie'/>
-                    <button name='watched' onClick={(event) => clickHandler(event, index, movie)}>Watched?</button>
-                    <button name='dislike' onClick={(event) => clickHandler(event, index, movie)}>👎</button>
-                    <StarRating/>
+                    <div className="wrapimage" key={index}>
+                        <img className='movieImage'  src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt='movie'/>
+                        <button name='watched' onClick={(event) => clickHandler(event, index, movie)}>Watched?</button>
+                        <button name='dislike' onClick={(event) => clickHandler(event, index, movie)}>👎</button>
+                        <StarRating/>
                     </div>
                 )
             })}
             <h2>Disliked Movies</h2>
             {user.rejectedMovies.map((movie, index) => {
                 return(
-                    <div key={index}>
+                    <div className="wrapimage" key={index}>
                     <img className='movieImage' src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt='movie'/>
                     <button name='watched' onClick={(event) => clickHandler(event, index, movie)}>Watched?</button>
                     <button name='like' onClick={(event) => clickHandler(event, index, movie)}>👍</button>
@@ -53,6 +72,6 @@ export const Rate = ({user, setUser}) => {
                 )
             })}
             <div id='placeholder'></div>
-        </div>
+        </StyledContainer>
     )
 }

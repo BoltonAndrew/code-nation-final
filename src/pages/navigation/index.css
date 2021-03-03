@@ -3,6 +3,8 @@
     position: fixed;
     top: 92vh;
     width: 100vw;
+
+
     
 }
 
@@ -44,34 +46,24 @@
     top: 1vh;
 }
 
-.swipeButton {
+.swipeButton, .settingsButton, .rateButton, .profileButton {
     height: 5vh;
     width: 5vh;
-    background-image: url('../../images/swipeButton.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
-
+.swipeButton {
+    background-image: url('../../images/swipeButton.png');
+}
 .rateButton {
-    height: 5vh;
-    width: 5vh;
     background-image: url('../../images/rateButton.png');
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 .profileButton {
-    height: 5vh;
-    width: 5vh;
     background-image: url('../../images/profileButton.png');
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 .settingsButton {
-    height: 5vh;
-    width: 5vh;
     background-image: url('../../images/settingsButton.png');
-    background-repeat: no-repeat;
-    background-size: contain;
 }
+

@@ -38,6 +38,12 @@ const StyledContainer = styled.div`
     button:active {
         background-color: rgba(106, 97, 171, 1);
     }
+    .movieContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        align-items:center;
+    }
 }
     
 `

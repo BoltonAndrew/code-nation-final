@@ -34,6 +34,11 @@ border-radius: 25px;
 background-color: #fff;
 ${baseFlex}
 box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
+@media(min-width: 1024px) {
+    width: 60%;
+
+}
+
 `
 const StyledFriendsList = styled.div`
 height:25%;
@@ -46,6 +51,10 @@ justify-content: flex-start;
 align-items: center;
 overflow-y:auto;
 box-shadow: 2px 2px 10px  rgba(0,0,0, 0.2);
+@media(min-width: 1024px) {
+    width: 60%;
+
+}
 p:first-child {
     font-weight:bold;
 }
@@ -69,6 +78,10 @@ display:flex;
 flex-direction:column;
 justify-content:  flex-start;
 align-items: center;
+@media(min-width: 1024px) {
+    width: 60%;
+
+}
 
 p:first-child {
     font-weight:bold;

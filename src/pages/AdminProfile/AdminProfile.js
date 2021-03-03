@@ -17,6 +17,7 @@ flex-direction: column;
 background-color: #E5E9F8;
 
 
+
 `
 const StyledAvatar = styled.div`
     height: 30%;
@@ -41,7 +42,13 @@ const StyledAvatar = styled.div`
         color: black;
         width: 90%;
     }
+    @media(min-width: 1024px) {
+    width: 70%;
+    }
+    @media(min-width: 1440px) {
+    width: 50%;
 
+    }
 
 `
 const StyledForm = styled.form`
@@ -49,6 +56,13 @@ const StyledForm = styled.form`
     width: 100%;
     ${flex}
     flex-direction: column;
+    @media(min-width: 1024px) {
+    width: 70%;
+
+    }
+    @media(min-width: 1440px) {
+    width: 50%;
+    }
 
     .row {
         height: 100%;
@@ -82,6 +96,13 @@ const StlyedButon = styled.div`
     height: 15%;
     width: 100%;
     ${flex}
+    @media(min-width: 1024px) {
+    width: 70%;
+
+    }
+    @media(min-width: 1440px) {
+    width: 50%;
+    }
 
     a {
     height: 40%;
