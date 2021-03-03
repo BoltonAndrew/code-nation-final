@@ -149,6 +149,7 @@ export const WatchParty = ({ user }) => {
 
     const suggestHandler = (e) => {
         e.preventDefault();
+        setMovieList({});
         findMovies(watchers, setMovieList);
     }
 
