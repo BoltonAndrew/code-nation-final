@@ -5,7 +5,7 @@ import { addUser, login } from '../../utils';
 import styled, { css } from "styled-components";
 import { ThemeProvider } from 'styled-components';
 import { ligthTheme, darkTheme, GlobalStyles } from '../../components/styleComp/theme';
-
+import logo from '../../images/cowLogo.png';
 
  
 const formStyle = css`
@@ -162,6 +162,7 @@ export const Home = ({user, setUser, setIsAuth}) => {
                 
             </StyledNavbar>
             <div id='mainBody'>
+                <img className='logo' src={logo} alt='Cow Logo'/>
                 <h1 data-text='Moo-V-find' id='title'>Moo-V-Find</h1>
                 <p id='introText'>Do you spend more time looking for a movie than actually watching one? 
                 Sick of not being able to find a movie that everyone enjoys?
