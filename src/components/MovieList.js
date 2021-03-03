@@ -21,7 +21,7 @@ export const MovieList = ({movieList, user}) => {
     }
 
     return(
-        <div>
+        <div className="movieContainer">
             {movies.length > 0 && movies.map((movie, index) => {
             return(
                 <img className='movie' key={index} src={process.env.REACT_APP_MDB_IMG + movie.poster_path} alt={movie.title}/>

@@ -1,8 +1,23 @@
 .movieImage {
     width: 100vw;
+    height: 100vh;
+}
+.ratesMoviesPge {
+        
+    display: flex;
+    justify-content: center;
 }
 
 #placeholder {
     height: 10vh;
     width: 100vw;
+}
+#likedmovie, dislikedmovie {
+    width: 100vw;
+    height: 100vh;
+
+    @media(min-width: 768px) {
+        width:50vw;
+        height:50vh;
+    }
 }
