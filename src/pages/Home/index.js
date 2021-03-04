@@ -10,7 +10,7 @@ import logo from '../../images/cowLogo.png';
  
 const formStyle = css`
 height: 100%;
-width: 200px;
+width: 100vw;
 display: flex;
 flex-direction: column;
 justify-content: flex-start;
@@ -28,6 +28,8 @@ input {
     margin-top: 10px;
     border-radius: 5px;
     border: none;
+    padding-left: 4px;
+    height: 1.5rem;
 }
 .form-btn {
     margin-top: 10px;
@@ -148,11 +150,11 @@ export const Home = ({user, setUser, setIsAuth}) => {
                 </StyledLogin>
                 
                 <StyledSign name='sign' onSubmit={handleSubmit} signUp={signUp} loginBool={loginBool}>
-                    <input id='emailInput' type='email' placeholder='Email' required onChange={(event) => setEmail(event.target.value)}/>
+                    <input id='emailInput2' type='email' placeholder='Email' required onChange={(event) => setEmail(event.target.value)}/>
                     <input id='userNameInput' type='text' placeholder='Username' required onChange={(event) => setUserName(event.target.value)}/>
                     <input id='fNameInput' type='text' placeholder='First Name' required onChange={(event) => setFName(event.target.value)}/>
                     <input id='lNameInput' type='text' placeholder='Last Name' required onChange={(event) => setLName(event.target.value)}/>
-                    <input id='passwordInput' type='password' placeholder='Password' required onChange={(event) => setPass(event.target.value)}/>
+                    <input id='passwordInput2' type='password' placeholder='Password' required onChange={(event) => setPass(event.target.value)}/>
                     <button type='submit' className="form-btn">Sign-up</button>
                     <div className="login"><p>Do you have account?</p><button onClick={()=> {setSignUp(!signUp); setLoginBool(!loginBool);}}>Login</button></div>
                     <button onClick={()=> {setSignUp(false); setLoginBool(false);}}>Close</button>
