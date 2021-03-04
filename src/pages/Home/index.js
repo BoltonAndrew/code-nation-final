@@ -105,7 +105,6 @@ export const Home = ({user, setUser, setIsAuth}) => {
     const [fName, setFName] = useState('');
     const [lName, setLName] = useState('');
     const [theme, setTheme] = useState(false);
-    console.log(theme)
 
     const handleSubmit = (e) => {
         e.preventDefault();

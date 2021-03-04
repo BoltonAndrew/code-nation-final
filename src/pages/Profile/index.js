@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from "styled-components";
 import ParticleEffectButton from 'react-particle-effect-button';
+import cow from '../../images/cowIcon.png';
 
 
 const baseFlex = css`
@@ -134,7 +135,6 @@ button:active {
 export const Profile = ({user}) => {
     const [userBtn, setUserBtn] = useState(false);
     const [movieBtn, setMovieBtn] = useState(false);
-    console.log(user.acceptedMovies)
     const userClickHandler = () => {
         setUserBtn(true);
     };
@@ -145,6 +145,7 @@ export const Profile = ({user}) => {
     return (
        <StyledWrapper>
         <StyledContainer>
+            <img src={cow} alt='cow logo'></img>
             <StyledTitle>
                 User Name<span style={{fontWeight:"bold"}}>{user.user}</span>
             </StyledTitle>
