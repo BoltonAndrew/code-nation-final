@@ -145,7 +145,6 @@ export const Profile = ({user}) => {
     return (
        <StyledWrapper>
         <StyledContainer>
-            <img src={cow} alt='cow logo'></img>
             <StyledTitle>
                 User Name<span style={{fontWeight:"bold"}}>{user.user}</span>
             </StyledTitle>
