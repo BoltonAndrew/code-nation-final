@@ -26,6 +26,13 @@
     top: 88vh;
 }
 
+#topButton:hover, .swipeButton:hover, .rateButton:hover, .profileButton:hover, .settingsButton:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in;
+}
+#topButton:active, .swipeButton:active, .rateButton:active, .profileButton:active, .settingsButton:active {
+    transform: scale(0.9);
+}
 
 #LinkContainer {
     height: 10vh;
@@ -36,6 +43,11 @@
     background-image: url('../../images/navbar.png');
     background-size: cover;
     background-repeat: no-repeat;
+}
+@media(min-width: 1024px){
+    #LinkContainer {
+        background-image: url('../../images/navbar-big.png');
+    }
 }
 
 .doubleLinkContainer {

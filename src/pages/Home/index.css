@@ -70,3 +70,22 @@ h1::before
         width: 100%;
     }
 }
+
+@media(min-width:768px){
+    .logo{
+        width: 50vw;
+
+    }
+}
+@media(min-width:1024px){
+    .logo{
+        width: 30vw;
+
+    }
+}
+@media(min-width:1440px){
+    .logo{
+        width: 20vw;
+
+    }
+}

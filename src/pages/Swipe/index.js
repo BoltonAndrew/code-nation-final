@@ -18,6 +18,35 @@ align-items: center;
     top: 40%;
     right: 40%;
 }
+.desktop-btn{
+    width:100%;
+    height:8vh;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    button{
+        padding: 0.8em 2em;
+        margin: 20px;
+        background: transparent;
+        border:none;
+        border-radius: 10px;
+        img:hover{
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        img:active{
+            transform: scale(0.9);
+        }
+    }
+    button:focus {
+    border: none;
+    outline: none;
+}
+@media(max-width:1024px){
+    display:none;
+}
+}
 
 @keyframes rotation {
     from {
@@ -115,26 +144,31 @@ export const Swipe = ({user, setUser}) => {
             swipeFetch(setMovies, user);
         }
     }, [movies]);
-
+    const left = () =>{
+        const userObj = user;
+        userObj.rejectedMovies.push(movies[0]);
+        setUser(userObj);
+        updateUser(user, setUser);
+        const movieArr = [...movies];
+        movieArr.shift();
+        setMovies(movieArr);
+    }
+    const right = () =>{
+        const userObj = user;
+        userObj.acceptedMovies.push(movies[0]);
+        setUser(userObj);
+        updateUser(user, setUser);
+        const movieArr = [...movies];
+        movieArr.shift();
+        setMovies([...movieArr]);
+    }
     const handleOnSwipe = (swipeDirection) => {
         if (swipeDirection === direction.RIGHT) {
-            const userObj = user;
-            userObj.acceptedMovies.push(movies[0]);
-            setUser(userObj);
-            updateUser(user, setUser);
-            const movieArr = [...movies];
-            movieArr.shift();
-            setMovies([...movieArr]);
+            right();
         }
 
         if (swipeDirection === direction.LEFT) {
-            const userObj = user;
-            userObj.rejectedMovies.push(movies[0]);
-            setUser(userObj);
-            updateUser(user, setUser);
-            const movieArr = [...movies];
-            movieArr.shift();
-            setMovies(movieArr);
+            left();
         }
     }
     let genres =  {
@@ -146,6 +180,11 @@ export const Swipe = ({user, setUser}) => {
 
     return(
         <StyledContainer>
+            <div className="desktop-btn">
+                <button onClick={left}><img src="https://img.icons8.com/ios/50/000000/xbox-x.png"/></button>
+                <button onClick={right}><img src="https://img.icons8.com/office/50/000000/like--v2.png"/></button>
+            </div>
+
             {movies.length < 1 && <img id='cowLogo' src={cowLogo} alt='loading'/>}
             <Swipeable onSwipe={handleOnSwipe}>
                 <div>
